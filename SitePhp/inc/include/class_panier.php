@@ -3,7 +3,7 @@
  * Class pannier hérite de l'interface pannier
  */
   require_once("inc/arbitre/controle_panier.php");
-class Pannier extends Unpanier {
+class Panier extends Unpanier {
 
   function __construct($titre, $quantite)
   {
