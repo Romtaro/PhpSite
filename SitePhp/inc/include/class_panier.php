@@ -2,8 +2,8 @@
 /**
  * Class pannier hérite de l'interface pannier
  */
-class Pannier extends Unpanier
-{
+  require_once("inc/arbitre/controle_panier.php");
+class Pannier extends Unpanier {
 
   function __construct($titre, $quantite)
   {
@@ -11,20 +11,18 @@ class Pannier extends Unpanier
   $this->set_quantite($quantite);
   $this->id_produit = " ";
   }
-  abstract function public ajout_panier(){
-    if(isset($_POST['ajout_panier']))
-    {	// debug($_POST);
+function public ajout_panier(){
+
     	$resultat = executeRequete("SELECT * FROM produit WHERE id_produit='$_POST[id_produit]'");
     	$produit = $resultat->fetch_assoc();
     	ajouterProduitDansPanier($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
-    }
+
   }
 function public vider_panier(){
-    if(isset($_GET['action']) && $_GET['action'] == "vider")
-    {
+
     	unset($_SESSION['panier']);
-    }
   }
+
 function public Montant_total(){
 
   }
@@ -37,8 +35,6 @@ return echo($tire);
   }
 
   function public payer(){
-    if(isset($_POST['payer']))
-    {
     	for($i=0 ;$i < count($_SESSION['panier']['id_produit']) ; $i++)
     	{
     		$resultat = executeRequete("SELECT * FROM produit WHERE id_produit=" . $_SESSION['panier']['id_produit'][$i]);
@@ -63,17 +59,9 @@ return echo($tire);
     	}
     	if(!isset($erreur))
     	{
-    		executeRequete("INSERT INTO commande (id_membre, montant, date_enregistrement) VALUES (" . $_SESSION['membre']['id_membre'] . "," . montantTotal() . ", NOW())");
-    		$id_commande = $mysqli->insert_id;
-    		for($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++)
-    		{
-    			executeRequete("INSERT INTO details_commande (id_commande, id_produit, quantite, prix) VALUES ($id_commande, " . $_SESSION['panier']['id_produit'][$i] . "," . $_SESSION['panier']['quantite'][$i] . "," . $_SESSION['panier']['prix'][$i] . ")");
-    		}
-    		unset($_SESSION['panier']);
-    		mail($_SESSION['membre']['email'], "confirmation de la commande", "Merci votre n° de suivi est le $id_commande", "From:vendeur@dp_site.com");
-    		$contenu .= "<div class='validation'>Merci pour votre commande. votre n° de suivi est le $id_commande</div>";
+      controleachat():
+
     	}
-    }
 
   }
 }

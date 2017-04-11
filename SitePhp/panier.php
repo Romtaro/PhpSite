@@ -1,5 +1,6 @@
 <?php
 require_once("inc/init.inc.php");
+require_once("inc/include/class_panier.php");
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 //--- AJOUT PANIER ---//
 if(isset($_POST['ajout_panier']))
