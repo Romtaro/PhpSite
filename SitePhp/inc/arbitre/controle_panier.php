@@ -1,6 +1,6 @@
 <?php
 
-function controleachat(){
+function controleachat($res){
 
 }
 

@@ -1,12 +1,14 @@
 <?php
 require_once("inc/init.inc.php");
+require("inc/include/class_panier.php");
+require("inc/fonction.inc.php");
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 //--- AJOUT PANIER ---//
 if(isset($_POST['ajout_panier']))
 {	// debug($_POST);
 	$resultat = executeRequete("SELECT * FROM produit WHERE id_produit='$_POST[id_produit]'");
 	$produit = $resultat->fetch_assoc();
-	ajouterProduitDansPanier($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
+	$panier::ajout_panier($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
 }
 //--- VIDER PANIER ---//
 if(isset($_GET['action']) && $_GET['action'] == "vider")

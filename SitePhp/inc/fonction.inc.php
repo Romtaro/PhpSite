@@ -1,4 +1,5 @@
 <?php
+require("inc/include/class_panier.php");
 function executeRequete($req)
 {
 	global $mysqli;
@@ -15,7 +16,7 @@ function debug($var, $mode = 1)
 		echo '<div style="background: orange; padding: 5px; float: right; clear: both; ">';
 		$trace = debug_backtrace();
 		$trace = array_shift($trace);
-		echo "Debug demandé dans le fichier : $trace[file] à la ligne $trace[line].<hr />";
+		echo "Debug demand� dans le fichier : $trace[file] � la ligne $trace[line].<hr />";
 		if($mode === 1)
 		{
 			echo "<pre>"; print_r($var); echo "</pre>";
@@ -48,7 +49,7 @@ function internauteEstConnecteEtEstAdmin()
 	return false;
 }
 
-function creationDuPanier()
+/*function creationDuPanier()
 {
    if (!isset($_SESSION['panier']))
    {
@@ -75,7 +76,7 @@ function ajouterProduitDansPanier($titre,$id_produit,$quantite,$prix)
         $_SESSION['panier']['quantite'][] = $quantite;
 		$_SESSION['panier']['prix'][] = $prix;
     }
-}
+}*/
 //------------------------------------
 function montantTotal()
 {
@@ -98,4 +99,3 @@ function retirerproduitDuPanier($id_produit_a_supprimer)
 		array_splice($_SESSION['panier']['prix'], $position_produit, 1);
 	}
 }
-?>
