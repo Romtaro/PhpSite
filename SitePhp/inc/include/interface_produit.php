@@ -9,4 +9,5 @@ $photo;
 $description;
 $prix;
 $quantite;
+}
  ?>
