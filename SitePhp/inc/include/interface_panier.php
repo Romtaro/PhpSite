@@ -1,11 +1,11 @@
 <?php
-Interface public Unpannier{
+Interface public panier{
 $titre;
 $id_produit;
 $quantite;
-function public ajout_panier();
-function public vider_panier();
-function public Montant_total();
+abstract function public ajout_panier();
+abstract function public vider_panier();
+abstract public Montant_total();
 
 }
 

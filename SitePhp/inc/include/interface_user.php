@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 Interface public User {
   $elevation;
@@ -13,3 +14,5 @@ Interface public User {
   $a;
 }
  ?>
+=======
+>>>>>>> origin/master
