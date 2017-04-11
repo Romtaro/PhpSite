@@ -1,6 +1,6 @@
 <?php
 
-function public controleachat(){
+function controleachat(){
   executeRequete("INSERT INTO commande (id_membre, montant, date_enregistrement) VALUES (" . $_SESSION['membre']['id_membre'] . "," . montantTotal() . ", NOW())");
   $id_commande = $mysqli->insert_id;
   for($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++)

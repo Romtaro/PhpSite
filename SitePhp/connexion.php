@@ -42,6 +42,7 @@ if($_POST)
 <?php echo $contenu; ?>
  <div class="login_form">
 <form method="post" action="">
+	<h4>Se connecter :</h4><br />
     <label for="pseudo">Pseudo</label><br />
     <input type="text" id="pseudo" name="pseudo" /><br /> <br />
 

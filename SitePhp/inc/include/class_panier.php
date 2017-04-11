@@ -2,39 +2,40 @@
 /**
  * Class pannier hérite de l'interface pannier
  */
-  require_once("inc/arbitre/controle_panier.php");
-class Panier extends Unpanier {
+  require("inc/arbitre/controle_panier.php");
+  require("inc/include/interface_panier.php");
 
-  function __construct($titre, $quantite)
+class Panier implements Unpanier {
+
+
+
+  function __construct()
   {
-  $this->set_titre($titre);
-  $this->set_quantite($quantite);
-  $this->id_produit = " ";
+  //$this->set_titre($titre);
+  //$this->set_quantite($quantite);
+  //$this->id_produit = " ";
   }
-function public ajout_panier(){
+function ajout_panier(){
 
     	$resultat = executeRequete("SELECT * FROM produit WHERE id_produit='$_POST[id_produit]'");
     	$produit = $resultat->fetch_assoc();
-    	ajouterProduitDansPanier($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
-
+    	$result = ajouterProduitDansPanier($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
+      return $result;
   }
-function public vider_panier(){
+function  vider_panier(){
 
     	unset($_SESSION['panier']);
   }
 
-function public Montant_total(){
-
-  }
- function public set_titre($titre){
-this-->$titre= "La boutique";
-return echo($tire);
-  }
-  function public set_quantite($quantite){
+function  Montant_total(){
 
   }
 
-  function public payer(){
+
+  function  set_quantite($quantite){
+
+  }
+  function  payer(){
     	for($i=0 ;$i < count($_SESSION['panier']['id_produit']) ; $i++)
     	{
     		$resultat = executeRequete("SELECT * FROM produit WHERE id_produit=" . $_SESSION['panier']['id_produit'][$i]);
@@ -59,8 +60,7 @@ return echo($tire);
     	}
     	if(!isset($erreur))
     	{
-      controleachat():
-
+      controleachat();
     	}
 
   }

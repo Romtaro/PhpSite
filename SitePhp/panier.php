@@ -1,6 +1,6 @@
 <?php
-require_once("inc/init.inc.php");
-require_once("inc/include/class_panier.php");
+require("inc/init.inc.php");
+require("inc/include/class_panier.php");
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 //--- AJOUT PANIER ---//
 if(isset($_POST['ajout_panier']))
@@ -10,7 +10,7 @@ Panier::ajout_panier();
 //--- VIDER PANIER ---//
 if(isset($_GET['action']) && $_GET['action'] == "vider")
 {
-	Panier::vider_panier()
+	Panier::vider_panier();
 }
 //--- PAIEMENT ---//
 if(isset($_POST['payer']))
