@@ -8,6 +8,7 @@ abstract function public vider_panier();
 abstract function public Montant_total();
 abstract function public set_titre($titre);
 abstract function public set_quantite($quantite);
+abstract function public payer();
 }
 
 
