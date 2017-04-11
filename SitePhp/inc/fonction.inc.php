@@ -98,3 +98,4 @@ function retirerproduitDuPanier($id_produit_a_supprimer)
 		array_splice($_SESSION['panier']['prix'], $position_produit, 1);
 	}
 }
+?>
