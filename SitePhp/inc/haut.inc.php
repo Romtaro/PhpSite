@@ -3,10 +3,11 @@
     <head>
         <title>Mon Site</title>
         <link rel="stylesheet" href="<?php echo RACINE_SITE; ?>inc/css/style.css" />
+        <meta charset="UTF-8">
     </head>
-    <body>    
+    <body>
         <header>
-			<div class="conteneur">                      
+			<div class="conteneur">
 				<span>
 					<a href="" title="Mon Site">MonSite.com</a>
                 </span>
@@ -21,15 +22,15 @@
 					if(internauteEstConnecte()) // membre et admin
 					{
 						echo '<a href="' . RACINE_SITE . 'profil.php">Voir votre profil</a>';
-						echo '<a href="' . RACINE_SITE . 'boutique.php">Accès à la boutique</a>';
+						echo '<a href="' . RACINE_SITE . 'boutique.php">AccÃ¨s Ã  la boutique</a>';
 						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
-						echo '<a href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se déconnecter</a>';
+						echo '<a href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se dÃ©connecter</a>';
 					}
 					else // visiteur
 					{
 						echo '<a href="' . RACINE_SITE . 'inscription.php">Inscription</a>';
 						echo '<a href="' . RACINE_SITE . 'connexion.php">Connexion</a>';
-						echo '<a href="' . RACINE_SITE . 'boutique.php">Accès à la boutique</a>';
+						echo '<a href="' . RACINE_SITE . 'boutique.php">AccÃ¨s Ã  la boutique</a>';
 						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
 					}
 					// visiteur=4 liens - membre=4 liens - admin=7 liens
@@ -38,4 +39,4 @@
 			</div>
         </header>
         <section>
-			<div class="conteneur">       
+			<div class="conteneur">

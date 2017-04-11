@@ -1,8 +1,8 @@
 <?php
 function executeRequete($req)
 {
-	global $mysqli; 
-	$resultat = $mysqli->query($req); 
+	global $mysqli;
+	$resultat = $mysqli->query($req);
 	if (!$resultat)
 	{
 		die("Erreur sur la requete sql.<br />Message : " . $mysqli->error . "<br />Code: " . $req);
@@ -10,12 +10,12 @@ function executeRequete($req)
 	return $resultat;
 }
 //------------------------------------
-function debug($var, $mode = 1) 
+function debug($var, $mode = 1)
 {
 		echo '<div style="background: orange; padding: 5px; float: right; clear: both; ">';
-		$trace = debug_backtrace(); 
+		$trace = debug_backtrace();
 		$trace = array_shift($trace);
-		echo "Debug demandé dans le fichier : $trace[file] à la ligne $trace[line].<hr />";
+		echo "Debug demandÃ© dans le fichier : $trace[file] Ã  la ligne $trace[line].<hr />";
 		if($mode === 1)
 		{
 			echo "<pre>"; print_r($var); echo "</pre>";
@@ -28,8 +28,8 @@ function debug($var, $mode = 1)
 }
 //------------------------------------
 function internauteEstConnecte()
-{  
-	if(!isset($_SESSION['membre'])) 
+{
+	if(!isset($_SESSION['membre']))
 	{
 		return false;
 	}
@@ -40,8 +40,8 @@ function internauteEstConnecte()
 }
 //------------------------------------
 function internauteEstConnecteEtEstAdmin()
-{ 
-	if(internauteEstConnecte() && $_SESSION['membre']['statut'] == 1) 
+{
+	if(internauteEstConnecte() && $_SESSION['membre']['statut'] == 1)
 	{
 			return true;
 	}
@@ -62,13 +62,13 @@ function creationDuPanier()
 
 function ajouterProduitDansPanier($titre,$id_produit,$quantite,$prix)
 {
-	creationDuPanier(); 
-    $position_produit = array_search($id_produit,  $_SESSION['panier']['id_produit']); 
+	creationDuPanier();
+    $position_produit = array_search($id_produit,  $_SESSION['panier']['id_produit']);
     if ($position_produit !== false)
     {
          $_SESSION['panier']['quantite'][$position_produit] += $quantite ;
     }
-    else 
+    else
     {
         $_SESSION['panier']['titre'][] = $titre;
         $_SESSION['panier']['id_produit'][] = $id_produit;
@@ -80,7 +80,7 @@ function ajouterProduitDansPanier($titre,$id_produit,$quantite,$prix)
 function montantTotal()
 {
    $total=0;
-   for($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++) 
+   for($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++)
    {
       $total += $_SESSION['panier']['quantite'][$i] * $_SESSION['panier']['prix'][$i];
    }

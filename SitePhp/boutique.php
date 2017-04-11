@@ -15,13 +15,13 @@ $contenu .= "</div>";
 $contenu .= '<div class="boutique-droite">';
 if(isset($_GET['categorie']))
 {
-	$donnees = executeRequete("SELECT id_produit,reference,titre,photo,prix FROM produit WHERE categorie='$_GET[categorie]'");	
+	$donnees = executeRequete("SELECT id_produit,reference,titre,photo,prix FROM produit WHERE categorie='$_GET[categorie]'");
 	while($produit = $donnees->fetch_assoc())
 	{
 		$contenu .= '<div class="boutique-produit">';
 		$contenu .= "<h3>$produit[titre]</h3>";
 		$contenu .= "<a href=\"fiche_produit.php?id_produit=$produit[id_produit]\"><img src=\"$produit[photo]\" width=\"130\" height=\"100\" /></a>";
-		$contenu .= "<p>$produit[prix] €</p>";
+		$contenu .= "<p>$produit[prix] â‚¬</p>";
 		$contenu .= '<a href="fiche_produit.php?id_produit=' . $produit['id_produit'] . '">Voir la fiche</a>';
 		$contenu .= '</div>';
 	}

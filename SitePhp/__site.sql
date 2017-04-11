@@ -18,8 +18,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Base de données: `site`
 --
-CREATE DATABASE IF NOT EXISTS site CHARACTER SET 'utf8';
-USE site;
 
 -- --------------------------------------------------------
 

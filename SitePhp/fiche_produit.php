@@ -11,14 +11,14 @@ $contenu .= "<p>Couleur: $produit[couleur]</p>";
 $contenu .= "<p>Taille: $produit[taille]</p>";
 $contenu .= "<img src='$produit[photo]' width='150' height='150' />";
 $contenu .= "<p><i>Description: $produit[description]</i></p><br />";
-$contenu .= "<p>Prix : $produit[prix] €</p><br />";
+$contenu .= "<p>Prix : $produit[prix] â‚¬</p><br />";
 
 if($produit['stock'] > 0)
 {
 	$contenu .= "<i>Nombre d'produit(s) disponible : $produit[stock] </i><br /><br />";
 	$contenu .= '<form method="post" action="panier.php">';
 		$contenu .= "<input type='hidden' name='id_produit' value='$produit[id_produit]' />";
-		$contenu .= '<label for="quantite">Quantité : </label>';
+		$contenu .= '<label for="quantite">QuantitÃ© : </label>';
 		$contenu .= '<select id="quantite" name="quantite">';
 			for($i = 1; $i <= $produit['stock'] && $i <= 5; $i++)
 			{
@@ -32,7 +32,7 @@ else
 {
 	$contenu .= 'Rupture de stock !';
 }
-$contenu .= "<br /><a href='boutique.php?categorie=" . $produit['categorie'] . "'>Retour vers la séléction de " . $produit['categorie'] . "</a>";
+$contenu .= "<br /><a href='boutique.php?categorie=" . $produit['categorie'] . "'>Retour vers la sÃ©lÃ©ction de " . $produit['categorie'] . "</a>";
 //--------------------------------- AFFICHAGE HTML ---------------------------------//
 require_once("inc/haut.inc.php");
 echo $contenu;
