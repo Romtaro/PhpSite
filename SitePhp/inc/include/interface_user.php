@@ -1,5 +1,5 @@
 <?php
-Interface public Utilisateur {
+Interface public User {
   $elevation;
   $pseudo;
   $nom;
