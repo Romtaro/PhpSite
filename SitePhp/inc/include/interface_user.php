@@ -10,5 +10,6 @@ Interface public User {
   $ville;
   $code;
   $adress;
+  $a;
 }
  ?>
