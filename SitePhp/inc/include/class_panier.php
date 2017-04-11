@@ -2,14 +2,30 @@
 /**
  * Class pannier hérite de l'interface pannier
  */
-class Pannier extends Unpannier
+class Pannier extends Unpanier
 {
 
-  function __construct(argument)
+  function __construct($titre, $quantite)
   {
-    # code...
+  $this->set_titre($titre);
+  $this->set_quantite($quantite);
+  $this->id_produit = " ";
   }
+  abstract function public ajout_panier(){
 
+  }
+  abstract function public vider_panier(){
+
+  }
+  abstract function public Montant_total(){
+
+  }
+  abstract function public set_titre($titre){
+
+  }
+  abstract function public set_quantite($quantite){
+
+  }
 }
 
 

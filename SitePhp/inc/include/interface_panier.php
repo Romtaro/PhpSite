@@ -1,12 +1,13 @@
 <?php
-Interface public panier{
-$titre;
+Interface public Unpanier{
+private $titre;
 $id_produit;
-$quantite;
+private $quantite;
 abstract function public ajout_panier();
 abstract function public vider_panier();
-abstract public Montant_total();
-
+abstract function public Montant_total();
+abstract function public set_titre($titre);
+abstract function public set_quantite($quantite);
 }
 
 

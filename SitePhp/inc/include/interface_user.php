@@ -1,4 +1,3 @@
-
 <?php
 Interface public User {
   $elevation;
@@ -11,6 +10,5 @@ Interface public User {
   $ville;
   $code;
   $adress;
-  $a;
 }
  ?>
