@@ -1,11 +1,11 @@
 <?php
 require_once("inc/init.inc.php");
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
-if(isset($_GET['action']) && $_GET['action'] == "deconnexion") 
+if(isset($_GET['action']) && $_GET['action'] == "deconnexion")
 {
-	session_destroy(); 
+	session_destroy();
 }
-if(internauteEstConnecte()) 
+if(internauteEstConnecte())
 {
 	header("location:profil.php");
 }
@@ -21,15 +21,15 @@ if($_POST)
             {
                 if($indice != 'mdp')
                 {
-                    $_SESSION['membre'][$indice] = $element; 
+                    $_SESSION['membre'][$indice] = $element;
                 }
             }
-            header("location:profil.php"); 
+            header("location:profil.php");
         }
         else
         {
             $contenu .= '<div class="erreur">Erreur de MDP</div>';
-        }       
+        }
     }
     else
     {
@@ -40,15 +40,15 @@ if($_POST)
 ?>
 <?php require_once("inc/haut.inc.php"); ?>
 <?php echo $contenu; ?>
- 
+ <div class="login_form">
 <form method="post" action="">
     <label for="pseudo">Pseudo</label><br />
     <input type="text" id="pseudo" name="pseudo" /><br /> <br />
-         
+
     <label for="mdp">Mot de passe</label><br />
     <input type="text" id="mdp" name="mdp" /><br /><br />
- 
+
      <input type="submit" value="Se connecter"/>
 </form>
- 
+ </div>
 <?php require_once("inc/bas.inc.php"); ?>
