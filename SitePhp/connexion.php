@@ -1,5 +1,6 @@
 <?php
 require_once("inc/init.inc.php");
+require_once('inc/class/Database.php');
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == "deconnexion")
 {
@@ -11,10 +12,11 @@ if(internauteEstConnecte())
 }
 if($_POST)
 {
-    $resultat = executeRequete("SELECT * FROM membre WHERE pseudo='$_POST[pseudo]'");
-    if($resultat->num_rows != 0)
+    $membre = Database::query("SELECT * FROM membre WHERE pseudo=?",array($_POST['pseudo']));
+    debug($membre);
+    if(count($membre) > 0 )
     {
-        $membre = $resultat->fetch_assoc();
+        $membre = $membre[0];
         if($membre['mdp'] == $_POST['mdp'])
         {
             foreach($membre as $indice => $element)
@@ -40,9 +42,8 @@ if($_POST)
 ?>
 <?php require_once("inc/haut.inc.php"); ?>
 <?php echo $contenu; ?>
- <div class="login_form">
+
 <form method="post" action="">
-	<h4>Se connecter :</h4><br />
     <label for="pseudo">Pseudo</label><br />
     <input type="text" id="pseudo" name="pseudo" /><br /> <br />
 
@@ -51,5 +52,5 @@ if($_POST)
 
      <input type="submit" value="Se connecter"/>
 </form>
- </div>
+
 <?php require_once("inc/bas.inc.php"); ?>

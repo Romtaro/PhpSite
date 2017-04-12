@@ -1,9 +1,20 @@
+<?php
+require_once('Routes.php');
+require_once('class/Database.php');
+
+function __autoload($class_name){
+        if (file_exists('./class/'.$class_name.'php')){
+              require_once'./class/'.$class_name.'.php';
+        } else if (file_exists('./controllers/'.$class_name.'.php')){
+              require_once'./contollers/'.$class_name.'.php';
+          }
+  }
+?>
 <!Doctype html>
 <html>
     <head>
         <title>Mon Site</title>
         <link rel="stylesheet" href="<?php echo RACINE_SITE; ?>inc/css/style.css" />
-        <meta charset="UTF-8">
     </head>
     <body>
         <header>
@@ -17,22 +28,20 @@
 					{ // BackOffice
 						echo '<a href="' . RACINE_SITE . 'admin/gestion_membre.php">Gestion des membres</a>';
 						echo '<a href="' . RACINE_SITE . 'admin/gestion_commande.php">Gestion des commandes</a>';
-						echo '<a href="' . RACINE_SITE . 'admin/gestion_boutique.php">Gestion de la boutique | </a>';
+						echo '<a href="' . RACINE_SITE . 'admin/gestion_boutique.php">Gestion de la boutique</a>';
 					}
 					if(internauteEstConnecte()) // membre et admin
 					{
-            echo '<a href="#" style="cursor:none;">Login : ' . $_SESSION['membre']['pseudo'] .' | </a>';
 						echo '<a href="' . RACINE_SITE . 'profil.php">Voir votre profil</a>';
-						echo '<a href="' . RACINE_SITE . 'boutique.php">Accès à la boutique</a>';
+						echo '<a href="' . RACINE_SITE . 'boutique.php">Acc�s � la boutique</a>';
 						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
-						echo '<a href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se déconnecter</a>';
+						echo '<a href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se d�connecter</a>';
 					}
 					else // visiteur
 					{
-            echo '<a href="#" style="cursor:none;">Login : Visiteur | </a>';
 						echo '<a href="' . RACINE_SITE . 'inscription.php">Inscription</a>';
 						echo '<a href="' . RACINE_SITE . 'connexion.php">Connexion</a>';
-						echo '<a href="' . RACINE_SITE . 'boutique.php">Accès à la boutique</a>';
+						echo '<a href="' . RACINE_SITE . 'boutique.php">Acc�s � la boutique</a>';
 						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
 					}
 					// visiteur=4 liens - membre=4 liens - admin=7 liens

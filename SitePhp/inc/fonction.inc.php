@@ -1,6 +1,5 @@
 <?php
-require("inc/include/class_panier.php");
-function executeRequete($req)
+/*function executeRequete($req)
 {
 	global $mysqli;
 	$resultat = $mysqli->query($req);
@@ -9,7 +8,7 @@ function executeRequete($req)
 		die("Erreur sur la requete sql.<br />Message : " . $mysqli->error . "<br />Code: " . $req);
 	}
 	return $resultat;
-}
+}*/
 //------------------------------------
 function debug($var, $mode = 1)
 {
@@ -49,7 +48,7 @@ function internauteEstConnecteEtEstAdmin()
 	return false;
 }
 
-/*function creationDuPanier()
+function creationDuPanier()
 {
    if (!isset($_SESSION['panier']))
    {
@@ -76,7 +75,7 @@ function ajouterProduitDansPanier($titre,$id_produit,$quantite,$prix)
         $_SESSION['panier']['quantite'][] = $quantite;
 		$_SESSION['panier']['prix'][] = $prix;
     }
-}*/
+}
 //------------------------------------
 function montantTotal()
 {

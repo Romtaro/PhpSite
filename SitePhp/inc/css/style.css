@@ -34,13 +34,3 @@ table tr td{
 text-align: center;
 }
 td, th{ padding: 5px; }
-/**************************************************** LOGIN ************************************************/
-.login_form {
-  margin-left:30%;
-  margin-top: 10%;
-  padding: 1.5%;
-  width: 35%;
-  height: auto;
-  border-radius: 5px;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-}
