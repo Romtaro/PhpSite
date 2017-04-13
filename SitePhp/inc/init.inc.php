@@ -8,7 +8,7 @@
 session_start();
 
 //--------- CHEMIN
-define("RACINE_SITE","/SitePhpTestMVC/");
+define("RACINE_SITE","/SitePhpTestMVC/SitePhp/");
 
 //--------- VARIABLES
 $contenu = '';
