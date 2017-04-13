@@ -93,7 +93,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 	{
 		$resultat = Database::query("SELECT * FROM produit WHERE id_produit=$_GET[id_produit]");
 		foreach($resultat as $key => $produit_actuel){
-
+}}
 	echo '
 	<h1> Formulaire Produits </h1>
 	<form method="post" enctype="multipart/form-data" action="">
@@ -128,7 +128,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		<input type="radio" name="public" value="f"'; if(isset($produit_actuel) && $produit_actuel['public'] == 'f') echo ' checked '; echo '/>Femme<br /><br />
 
 		<label for="photo">photo</label><br />
-		<input type="file" id="photo" name="photo" /><br /><br />';}
+		<input type="file" id="photo" name="photo" /><br /><br />';
 		if(isset($produit_actuel))
 		{
 			echo '<i>Vous pouvez uplaoder une nouvelle photo si vous souhaitez la changer</i><br />';
@@ -145,6 +145,6 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 
 		<input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit"/>
 	</form>';
-}
+
 }
 require_once("../inc/bas.inc.php"); ?>
