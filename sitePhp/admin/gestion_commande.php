@@ -55,21 +55,21 @@ require_once("../inc/haut.inc.php");
 	if(isset($_GET['suivi']))
 	{
 		echo '<h1> Voici le détails pour une commande</h1>';
-		echo '<table border="1">';
-		echo '<tr>';
-		$information_sur_une_commande = Database::query("SELECT * FROM details_commande WHERE id_commande=$_GET[suivi]");
+				echo '<table border="1">';
+				echo '<tr>';
+				$information_sur_une_commande = Database::queryp("SELECT * FROM details_commande WHERE id_commande=$_GET[suivi]");
 
-		$nbcol = count($information_sur_une_commande);
-		echo "<table style='border-color:red' border=10> <tr>";
-		for ($i=0; $i < $nbcol; $i++)
-		{
-			$colonne = $information_sur_une_commande->fetch_field();
-			echo '<th>' . $colonne . '</th>';
-		}
-		echo "</tr>";
+				echo "<table style='border-color:red' border=10> <tr>";
 
-		foreach( $information_sur_une_commande as $key => $details_commande)
-		{
+				foreach( $information_sur_une_commande as $key => $details_commande)
+				{
+					echo '<th>' . $key . '</th>';
+				}
+				echo "</tr>";
+				$information_sur_une_commande = Database::query("SELECT * FROM details_commande WHERE id_commande=$_GET[suivi]");
+
+				foreach( $information_sur_une_commande as $key => $details_commande)
+				{
 			echo '<tr>';
 				echo '<td>' . $details_commande['id_details_commande'] . '</td>';
 				echo '<td>' . $details_commande['id_commande'] . '</td>';
