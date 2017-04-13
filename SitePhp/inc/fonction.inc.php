@@ -15,7 +15,7 @@ function debug($var, $mode = 1)
 		echo '<div style="background: orange; padding: 5px; float: right; clear: both; ">';
 		$trace = debug_backtrace();
 		$trace = array_shift($trace);
-		echo "Debug demand� dans le fichier : $trace[file] � la ligne $trace[line].<hr />";
+		echo "Debug demandé dans le fichier : $trace[file] à la ligne $trace[line].<hr />";
 		if($mode === 1)
 		{
 			echo "<pre>"; print_r($var); echo "</pre>";

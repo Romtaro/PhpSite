@@ -27,12 +27,12 @@ if($_POST)
 	}
 	else
 	{
-		$msg .= "le nouveau mot de passe doit �tre renseign� !";
+		$msg .= "le nouveau mot de passe doit être renseigné !";
 	}
 }
 if(isset($_GET['action']) && $_GET['action'] == 'modif')
 {
-	$msg .= "la modification � bien �t� prise en compte";
+	$msg .= "la modification à bien été prise en compte";
 }
 
 require_once("inc/haut_de_site.inc.php");
@@ -41,7 +41,7 @@ echo $msg;
 ?>
 		<h2> Modification de vos informations </h2>
 		<?php
-			print "vous �tes connect� sous le pseudo: " . $_SESSION['utilisateur']['pseudo'];
+			print "vous êtes connecté sous le pseudo: " . $_SESSION['utilisateur']['pseudo'];
 		?><br /><br />
 		<form method="post" enctype="multipart/form-data" action="membres.php">
 		<input type="hidden" id="id_membre" name="id_membre" value="<?php if(isset($_SESSION['utilisateur'])) print $_SESSION['utilisateur']['id_membre']; ?>" />
@@ -55,7 +55,7 @@ echo $msg;
 			<label for="nom">Nom</label>
 				<input type="text" id="nom" name="nom" value="<?php if(isset($_SESSION['utilisateur'])) print $_SESSION['utilisateur']['nom']; ?>"/><br />
 
-			<label for="prenom">Pr�nom</label>
+			<label for="prenom">Prénom</label>
 				<input type="text" id="prenom" name="prenom" value="<?php if(isset($_SESSION['utilisateur'])) print $_SESSION['utilisateur']['prenom']; ?>"/><br />
 
 			<label for="email">Email</label>

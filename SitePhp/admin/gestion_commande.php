@@ -8,7 +8,7 @@ if(!internauteEstConnecteEtEstAdmin())
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
 require_once("../inc/haut.inc.php");
 //require_once("../inc/menu.inc.php");
-	echo '<h1> Voici les commandes pass�es sur le site </h1>';
+	echo '<h1> Voici les commandes passées sur le site </h1>';
 	echo '<table border="1"><tr>';
 
 	$information_sur_les_commandes = Database::query("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
@@ -16,12 +16,19 @@ require_once("../inc/haut.inc.php");
 	echo "Nombre de commande(s) : " . count($information_sur_les_commandes);
 	//debug($information_sur_les_commandes);
 	echo "<table style='border-color:red' border=10> <tr>";
+
+	$information_sur_les_commandes = Database::queryp("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
+
+
 	foreach( $information_sur_les_commandes as $key => $colonne)
 	{
+		echo '<th>' . $key. '</th>';
 
-		echo '<th>' . $colonne . '</th>';
 	}
 	echo "</tr>";
+
+	$information_sur_les_commandes = Database::query("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
+
 	$chiffre_affaire = 0;
 	foreach( $information_sur_les_commandes as $key => $commande)
 	{
@@ -42,12 +49,12 @@ require_once("../inc/haut.inc.php");
 	}
 	echo '</table><br />';
 	echo 'Calcul du montant total des revenus:  <br />';
-		print "le chiffre d'affaires de la societe est de : $chiffre_affaire �";
+		print "le chiffre d'affaires de la societe est de : $chiffre_affaire €";
 
 	echo '<br />';
 	if(isset($_GET['suivi']))
 	{
-		echo '<h1> Voici le d�tails pour une commande</h1>';
+		echo '<h1> Voici le détails pour une commande</h1>';
 		echo '<table border="1">';
 		echo '<tr>';
 		$information_sur_une_commande = Database::query("SELECT * FROM details_commande WHERE id_commande=$_GET[suivi]");

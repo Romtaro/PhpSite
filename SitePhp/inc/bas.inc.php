@@ -1,8 +1,8 @@
 			</div>
         </section>
         <footer>
-			<div class="conteneur">    
-				<?php echo date('Y'); ?> - Tous droits reservés.
+			<div class="conteneur">
+				<?php echo date('Y'); ?> - Tous droits reservÃ©s - PDOConvert_TEAM.
 			</div>
         </footer>
     </body>

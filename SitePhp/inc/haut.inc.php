@@ -33,15 +33,15 @@ function __autoload($class_name){
 					if(internauteEstConnecte()) // membre et admin
 					{
 						echo '<a href="' . RACINE_SITE . 'profil.php">Voir votre profil</a>';
-						echo '<a href="' . RACINE_SITE . 'boutique.php">Acc�s � la boutique</a>';
+						echo '<a href="' . RACINE_SITE . 'boutique.php">Accès à la boutique</a>';
 						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
-						echo '<a href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se d�connecter</a>';
+						echo '<a href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se déconnecter</a>';
 					}
 					else // visiteur
 					{
 						echo '<a href="' . RACINE_SITE . 'inscription.php">Inscription</a>';
 						echo '<a href="' . RACINE_SITE . 'connexion.php">Connexion</a>';
-						echo '<a href="' . RACINE_SITE . 'boutique.php">Acc�s � la boutique</a>';
+						echo '<a href="' . RACINE_SITE . 'boutique.php">Accès à la boutique</a>';
 						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
 					}
 					// visiteur=4 liens - membre=4 liens - admin=7 liens

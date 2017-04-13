@@ -25,15 +25,15 @@ foreach( $resultat as $key => $produit){
 		if($produit['stock'] < $_SESSION['panier']['quantite'][$i])
 		{
 			$contenu .= '<hr /><div class="erreur">Stock Restant: ' . $produit['stock'] . '</div>';
-			$contenu .= '<div class="erreur">Quantit� demand�e: ' . $_SESSION['panier']['quantite'][$i] . '</div>';
+			$contenu .= '<div class="erreur">Quantité demandée: ' . $_SESSION['panier']['quantite'][$i] . '</div>';
 			if($produit['stock'] > 0)
 			{
-				$contenu .= '<div class="erreur">la quantit� de l\'produit ' . $_SESSION['panier']['id_produit'][$i] . ' � �t� r�duite car notre stock �tait insuffisant, veuillez v�rifier vos achats.</div>';
+				$contenu .= '<div class="erreur">la quantité de l\'produit ' . $_SESSION['panier']['id_produit'][$i] . ' à été réduite car notre stock était insuffisant, veuillez vérifier vos achats.</div>';
 				$_SESSION['panier']['quantite'][$i] = $produit['stock'];
 			}
 			else
 			{
-				$contenu .= '<div class="erreur">l\'produit ' . $_SESSION['panier']['id_produit'][$i] . ' � �t� retir� de votre panier car nous sommes en rupture de stock, veuillez v�rifier vos achats.</div>';
+				$contenu .= '<div class="erreur">l\'produit ' . $_SESSION['panier']['id_produit'][$i] . ' à été retiré de votre panier car nous sommes en rupture de stock, veuillez vérifier vos achats.</div>';
 				retirerproduitDuPanier($_SESSION['panier']['id_produit'][$i]);
 				$i--;
 			}
@@ -53,8 +53,8 @@ foreach( $resultat as $key => $produit){
 		 Database::query("INSERT INTO details_commande (id_commande, id_produit, quantite, prix) VALUES ($id_commande, " . $_SESSION['panier']['id_produit'][$i] . "," . $_SESSION['panier']['quantite'][$i] . "," . $_SESSION['panier']['prix'][$i] . ")");
 		}
 		unset($_SESSION['panier']);
-		mail($_SESSION['membre']['email'], "confirmation de la commande", "Merci votre n� de suivi est le $id_commande", "From:vendeur@dp_site.com");
-		$contenu .= "<div class='validation'>Merci pour votre commande. votre n� de suivi est le $id_commande</div>";
+		mail($_SESSION['membre']['email'], "confirmation de la commande", "Merci votre n° de suivi est le $id_commande", "From:vendeur@dp_site.com");
+		$contenu .= "<div class='validation'>Merci pour votre commande. votre n° de suivi est le $id_commande</div>";
 	}
 }
 
@@ -63,7 +63,7 @@ include("inc/haut.inc.php");
 echo $contenu;
 echo "<table border='1' style='border-collapse: collapse' cellpadding='7'>";
 echo "<tr><td colspan='5'>Panier</td></tr>";
-echo "<tr><th>Titre</th><th>Produit</th><th>Quantit�</th><th>Prix Unitaire</th><th>Action</th></tr>";
+echo "<tr><th>Titre</th><th>Produit</th><th>Quantité</th><th>Prix Unitaire</th><th>Action</th></tr>";
 if(empty($_SESSION['panier']['id_produit'])) // panier vide
 {
 	echo "<tr><td colspan='5'>Votre panier est vide</td></tr>";
@@ -83,7 +83,7 @@ else
 	if(internauteEstConnecte())
 	{
 		echo '<form method="post" action="">';
-		echo '<tr><td colspan="5"><input type="submit" name="payer" value="Valider et d�clarer le paiement" /></td></tr>';
+		echo '<tr><td colspan="5"><input type="submit" name="payer" value="Valider et déclarer le paiement" /></td></tr>';
 		echo '</form>';
 	}
 	else
@@ -93,5 +93,5 @@ else
 	echo "<tr><td colspan='5'><a href='?action=vider'>Vider mon panier</a></td></tr>";
 }
 echo "</table><br />";
-echo "<i>R�glement par CH�QUE uniquement � l'adresse suivante : Ynov Aix - Bureau Couscous-Vodka</i><br />";
+echo "<i>Règlement par CHAQUE uniquement à l'adresse suivante : Ynov Aix - Bureau Couscous-Vodka</i><br />";
 include("inc/bas.inc.php");
