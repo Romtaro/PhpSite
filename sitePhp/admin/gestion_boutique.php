@@ -17,7 +17,7 @@ if(isset($_GET['action']) && $_GET['action'] == "suppression")
 	$chemin_photo_a_supprimer = $_SERVER['DOCUMENT_ROOT'] . $produit_a_supprimer['photo'];
 	if(!empty($produit_a_supprimer['photo']) && file_exists($chemin_photo_a_supprimer))	unlink($chemin_photo_a_supprimer);
 	$contenu .= '<div class="validation">Suppression du produit : ' . $_GET['id_produit'] . '</div>';
-	executeRequete("DELETE FROM produit WHERE id_produit=$_GET[id_produit]");
+	Database::query("DELETE FROM produit WHERE id_produit=$_GET[id_produit]");
 	$_GET['action'] = 'affichage';
 }
 }
@@ -55,8 +55,8 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
 	$contenu .= '<h2> Affichage des produits </h2>';
 	$contenu .= 'Nombre de produit(s) dans la boutique : ' . count($resultat);
 	$contenu .= '<table border="1" cellpadding="5"><tr>';
-  $resultatTitle = Database::queryp("SELECT * FROM produit");
-	foreach($resultatTit as $key=> $colonne)
+  $resultatTitle = Database::query("SELECT * FROM produit");
+	foreach($resultatTitle as $key=> $colonne)
 	{
 		$contenu .= '<th>' . $key . '</th>';
 	}
@@ -93,7 +93,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 	{
 		$resultat = Database::query("SELECT * FROM produit WHERE id_produit=$_GET[id_produit]");
 		foreach($resultat as $key => $produit_actuel){
-	}
+
 	echo '
 	<h1> Formulaire Produits </h1>
 	<form method="post" enctype="multipart/form-data" action="">
@@ -128,7 +128,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		<input type="radio" name="public" value="f"'; if(isset($produit_actuel) && $produit_actuel['public'] == 'f') echo ' checked '; echo '/>Femme<br /><br />
 
 		<label for="photo">photo</label><br />
-		<input type="file" id="photo" name="photo" /><br /><br />';
+		<input type="file" id="photo" name="photo" /><br /><br />';}
 		if(isset($produit_actuel))
 		{
 			echo '<i>Vous pouvez uplaoder une nouvelle photo si vous souhaitez la changer</i><br />';
