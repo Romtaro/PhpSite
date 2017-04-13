@@ -21,7 +21,7 @@ $contenu .= "</div>";
 $contenu .= '<div class="boutique-droite">';
 if(isset($_GET['categorie']))
 {
-	$donnees = Database::query("SELECT id_produit,reference,titre,photo,prix FROM produit WHERE categorie='$_GET[categorie]'");
+	$donnees = Database::query("SELECT id_produit,reference,titre,photo,prix FROM produit WHERE categorie=?", array($_GET['categorie']));
 	foreach($donnees as $key2 =>$produit)
 	{
 		$contenu .= '<div class="boutique-produit">';
