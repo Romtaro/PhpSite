@@ -1,6 +1,6 @@
 <?php
 require_once("../inc/init.inc.php");
-require_once('../inc/class/Database.php');
+require_once('class/Database.php');
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 //--- VERIFICATION ADMIN ---//
 if(!internauteEstConnecteEtEstAdmin())
@@ -13,13 +13,12 @@ if(!internauteEstConnecteEtEstAdmin())
 if(isset($_GET['action']) && $_GET['action'] == "suppression")
 {	// $contenu .= $_GET['id_produit']
 	$resultat = Database::query("SELECT * FROM produit WHERE id_produit=$_GET[id_produit]");
-	foreach($resultat as $key => $produit_a_supprimer){
+	$produit_a_supprimer = $resultat->fetch_assoc();
 	$chemin_photo_a_supprimer = $_SERVER['DOCUMENT_ROOT'] . $produit_a_supprimer['photo'];
 	if(!empty($produit_a_supprimer['photo']) && file_exists($chemin_photo_a_supprimer))	unlink($chemin_photo_a_supprimer);
 	$contenu .= '<div class="validation">Suppression du produit : ' . $_GET['id_produit'] . '</div>';
 	executeRequete("DELETE FROM produit WHERE id_produit=$_GET[id_produit]");
 	$_GET['action'] = 'affichage';
-}
 }
 //--- ENREGISTREMENT PRODUIT ---//
 if(!empty($_POST))
@@ -40,7 +39,7 @@ if(!empty($_POST))
 	{
 		$_POST[$indice] = htmlEntities(addSlashes($valeur));
 	}
-	Database::query("REPLACE INTO produit (id_produit, reference, categorie, titre, description, couleur, taille, public, photo, prix, stock) values ('$_POST[id_produit]', '$_POST[reference]', '$_POST[categorie]', '$_POST[titre]', '$_POST[description]', '$_POST[couleur]', '$_POST[taille]', '$_POST[public]',  '$photo_bdd',  '$_POST[prix]',  '$_POST[stock]')");
+	executeRequete("REPLACE INTO produit (id_produit, reference, categorie, titre, description, couleur, taille, public, photo, prix, stock) values ('$_POST[id_produit]', '$_POST[reference]', '$_POST[categorie]', '$_POST[titre]', '$_POST[description]', '$_POST[couleur]', '$_POST[taille]', '$_POST[public]',  '$photo_bdd',  '$_POST[prix]',  '$_POST[stock]')");
 	$contenu .= '<div class="validation">Le produit a �t� enregistr�</div>';
 	$_GET['action'] = 'affichage';
 }
@@ -50,21 +49,21 @@ $contenu .= '<a href="?action=ajout">Ajout d\'un produit</a><br /><br /><hr /><b
 //--- AFFICHAGE PRODUITS ---//
 if(isset($_GET['action']) && $_GET['action'] == "affichage")
 {
-	$resultat = Database::query("SELECT * FROM produit");
+	$resultat = executeRequete("SELECT * FROM produit");
 
 	$contenu .= '<h2> Affichage des produits </h2>';
-	$contenu .= 'Nombre de produit(s) dans la boutique : ' . count($resultat);
+	$contenu .= 'Nombre de produit(s) dans la boutique : ' . $resultat->num_rows;
 	$contenu .= '<table border="1" cellpadding="5"><tr>';
-  $resultatTitle = Database::queryp("SELECT * FROM produit");
-	foreach($resultatTit as $key=> $colonne)
+
+	while($colonne = $resultat->fetch_field())
 	{
-		$contenu .= '<th>' . $key . '</th>';
+		$contenu .= '<th>' . $colonne->name . '</th>';
 	}
 	$contenu .= '<th>Modification</th>';
 	$contenu .= '<th>Supression</th>';
 	$contenu .= '</tr>';
 
-	foreach($resultat as $key => $ligne)
+	while ($ligne = $resultat->fetch_assoc())
 	{
 		$contenu .= '<tr>';
 		foreach ($ligne as $indice => $information)
@@ -91,8 +90,8 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 {
 	if(isset($_GET['id_produit']))
 	{
-		$resultat = Database::query("SELECT * FROM produit WHERE id_produit=$_GET[id_produit]");
-		foreach($resultat as $key => $produit_actuel){
+		$resultat = executeRequete("SELECT * FROM produit WHERE id_produit=$_GET[id_produit]");
+		$produit_actuel = $resultat->fetch_assoc();
 	}
 	echo '
 	<h1> Formulaire Produits </h1>
@@ -145,6 +144,5 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 
 		<input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit"/>
 	</form>';
-}
 }
 require_once("../inc/bas.inc.php"); ?>
