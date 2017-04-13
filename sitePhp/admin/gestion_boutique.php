@@ -50,12 +50,13 @@ $contenu .= '<a href="?action=ajout">Ajout d\'un produit</a><br /><br /><hr /><b
 //--- AFFICHAGE PRODUITS ---//
 if(isset($_GET['action']) && $_GET['action'] == "affichage")
 {
-	$resultat = Database::query("SELECT * FROM produit");
+	$resultat = Database::queryp("SELECT * FROM produit");
 
 	$contenu .= '<h2> Affichage des produits </h2>';
 	$contenu .= 'Nombre de produit(s) dans la boutique : ' . count($resultat);
 	$contenu .= '<table border="1" cellpadding="5"><tr>';
-  $resultatTitle = Database::query("SELECT * FROM produit");
+  $resultatTitle = Database::queryp("SELECT * FROM produit");
+		//	debug($resultatTitle);
 	foreach($resultatTitle as $key=> $colonne)
 	{
 		$contenu .= '<th>' . $key . '</th>';
@@ -64,12 +65,16 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
 	$contenu .= '<th>Supression</th>';
 	$contenu .= '</tr>';
 
+	$resultat = Database::queryp("SELECT * FROM produit");
+
 	foreach($resultat as $key => $ligne)
 	{
-		$contenu .= '<tr>';
-		foreach ($ligne as $indice => $information)
-		{
-			if($indice == "photo")
+$contenu .= '<tr>';
+debug($key);
+//debug($key);
+//debug($ligne);
+
+			if($key == "photo")
 			{
 				$contenu .= '<td><img src="' . $information . '" width="70" height="70" /></td>';
 			}
@@ -77,7 +82,7 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
 			{
 				$contenu .= '<td>' . $information . '</td>';
 			}
-		}
+
 		$contenu .= '<td><a href="?action=modification&id_produit=' . $ligne['id_produit'] .'"><img src="../inc/img/edit.png" /></a></td>';
 		$contenu .= '<td><a href="?action=suppression&id_produit=' . $ligne['id_produit'] .'" OnClick="return(confirm(\'En �tes vous certain ?\'));"><img src="../inc/img/delete.png" /></a></td>';
 		$contenu .= '</tr>';
