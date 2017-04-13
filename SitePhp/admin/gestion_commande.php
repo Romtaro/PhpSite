@@ -8,19 +8,22 @@ if(!internauteEstConnecteEtEstAdmin())
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
 require_once("../inc/haut.inc.php");
 //require_once("../inc/menu.inc.php");
-	echo '<h1> Voici les commandes passées sur le site </h1>';
+	echo '<h1> Voici les commandes passï¿½es sur le site </h1>';
 	echo '<table border="1"><tr>';
-	
-	$information_sur_les_commandes = executeRequete("select c.*, m.pseudo, m.adresse, m.ville, m.code_postal from commande c left join membre m on  m.id_membre = c.id_membre");
-	echo "Nombre de commande(s) : " . $information_sur_les_commandes->num_rows;
+
+	$information_sur_les_commandes = Database::query("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
+	//debug($information_sur_les_commandes);
+	echo "Nombre de commande(s) : " . count($information_sur_les_commandes);
+	//debug($information_sur_les_commandes);
 	echo "<table style='border-color:red' border=10> <tr>";
-	while($colonne = $information_sur_les_commandes->fetch_field())
-	{    
-		echo '<th>' . $colonne->name . '</th>';
+	foreach( $information_sur_les_commandes as $key => $colonne)
+	{
+
+		echo '<th>' . $colonne . '</th>';
 	}
 	echo "</tr>";
 	$chiffre_affaire = 0;
-	while ($commande = $information_sur_les_commandes->fetch_assoc())
+	foreach( $information_sur_les_commandes as $key => $commande)
 	{
 		$chiffre_affaire += $commande['montant'];
 		echo '<div>';
@@ -39,26 +42,26 @@ require_once("../inc/haut.inc.php");
 	}
 	echo '</table><br />';
 	echo 'Calcul du montant total des revenus:  <br />';
-		print "le chiffre d'affaires de la societe est de : $chiffre_affaire €"; 
-	
+		print "le chiffre d'affaires de la societe est de : $chiffre_affaire ï¿½";
+
 	echo '<br />';
 	if(isset($_GET['suivi']))
-	{	
-		echo '<h1> Voici le détails pour une commande</h1>';
+	{
+		echo '<h1> Voici le dï¿½tails pour une commande</h1>';
 		echo '<table border="1">';
 		echo '<tr>';
-		$information_sur_une_commande = executeRequete("select * from details_commande where id_commande=$_GET[suivi]");
-		
-		$nbcol = $information_sur_une_commande->field_count;
+		$information_sur_une_commande = Database::query("SELECT * FROM details_commande WHERE id_commande=$_GET[suivi]");
+
+		$nbcol = count($information_sur_une_commande);
 		echo "<table style='border-color:red' border=10> <tr>";
 		for ($i=0; $i < $nbcol; $i++)
-		{    
-			$colonne = $information_sur_une_commande->fetch_field(); 
-			echo '<th>' . $colonne->name . '</th>';
+		{
+			$colonne = $information_sur_une_commande->fetch_field();
+			echo '<th>' . $colonne . '</th>';
 		}
 		echo "</tr>";
 
-		while ($details_commande = $information_sur_une_commande->fetch_assoc())
+		foreach( $information_sur_une_commande as $key => $details_commande)
 		{
 			echo '<tr>';
 				echo '<td>' . $details_commande['id_details_commande'] . '</td>';

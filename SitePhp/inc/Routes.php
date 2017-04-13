@@ -18,7 +18,7 @@ Route::set('boutique.php',function(){
         ControBoutique::CreateView('boutique');
 });
 
-Route::set('membre.php',function(){
-        ControMembre::CreateView('membre');
+Route::set('membres.php',function(){
+        ControMembre::CreateView('membres');
 });
 ?>
