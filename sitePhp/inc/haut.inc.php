@@ -3,13 +3,6 @@ require_once('class/Produits.php');
 require_once('class/Database.php');
 require_once('init.inc.php');
 require_once ("class/Boutique.php");
-function __autoload($class_name){
-        if (file_exists('./class/'.$class_name.'php')){
-              require_once'./class/'.$class_name.'.php';
-        } else if (file_exists('./controllers/'.$class_name.'.php')){
-              require_once'./contollers/'.$class_name.'.php';
-          }
-  }
 ?>
 <!Doctype html>
 <html>
