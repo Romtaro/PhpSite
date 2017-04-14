@@ -1,8 +1,9 @@
 <?php
-require_once('class/Produits.php');
-require_once('class/Database.php');
+
+require_once('inc/class/Autoloader.php');
+Autoloader::register();
 require_once('init.inc.php');
-require_once ("class/Boutique.php");
+
 ?>
 <!Doctype html>
 <html>
