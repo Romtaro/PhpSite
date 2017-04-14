@@ -39,7 +39,8 @@ if(isset($_GET['action']) && $_GET['action'] == 'modif')
 }
 
 
-?>
+?>		<div class="formulaire_obj"><div class="formulaire_form form_prod">
+
 		<h2> Modification de vos informations </h2>
 		<?php
 		if(!isset($_SESSION['membre'])) {
@@ -66,13 +67,13 @@ if(isset($_GET['action']) && $_GET['action'] == 'modif')
 
 			<label for="email">Email</label>
 				<input type="text" id="email" name="email" value="<?php if(isset($_SESSION['membre'])) print $_SESSION['membre']['email']; ?>"/><br />
-
+<div class="choix_civilite">
 			<label for="sexe">Sexe</label>
 					<select id="sexe" name="sexe">
 						<option value="m" <?php if(isset($_SESSION['membre']['sexe']) && $_SESSION['membre']['sexe'] == "m") print "selected"; ?>>Homme</option>
 						<option value="f" <?php if(isset($_SESSION['membre']['sexe']) && $_SESSION['membre']['sexe'] == "f") print "selected"; ?>>Femme</option>
 					</select><br />
-
+</div>
 			<label for="ville">Ville</label>
 				<input type="text" id="ville" name="ville" value="<?php if(isset($_SESSION['membre'])) print $_SESSION['membre']['ville']; ?>"/><br />
 
