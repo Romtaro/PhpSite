@@ -2,17 +2,58 @@
 *{ margin: 0; }
 body{ font-family : verdana; font-size: 12px; }
 a{ text-decoration: none; color: #000; }
-.conteneur{ margin: 0 auto; max-width: 1170px; }
+.conteneur{ margin: 0 auto; max-width: 1300px; width: 100%;}
+.conteneur a{ margin-right: 25px;margin-left: 25px;}
+a.panier_s {
+  margin-left: 150px;
+  position: fixed;
+  right: 20%;
+  top: 0.5%;
+  padding: 10px;
+}
+a:hover.panier_s {
+background-color: rgba(190, 170, 170, 0.5);
+text-transform:capitalize;
+text-decoration: underline;
+text-decoration-style:wavy;
+height: 12px;
+margin-top: 2px;
+}
 /**************************************************** HAUT ************************************************/
-header { background: #000000; padding: 5px; text-align: center; }
+header {margin-left: 6px;width: 98%; background: #000000; padding: 12px; text-align: center; margin-top: 3px;}
 header  span{ color: #fff; font-weight: bold; text-transform: uppercase; margin-right: 5%; }
-header  nav{ display: inline; }
+header  nav{ display: inline; width: auto;}
 header  a{ color: #ffffff; text-decoration: none; padding: 5px 5px; }
-header  nav  a:hover{ background: #04baf6; }
+header  nav  a:hover{ background: #04baf6; border-radius: 4px; margin-right: 10px;margin-left: 12px;padding-left: 15px;padding-right: 15px;}
+header .m_adm {
+  position: relative;
+  right: 5%;
+  display: inline;
+}
+
+header .m_mem {
+  position: relative;
+  top: 5px;
+  left: 47%;
+  display: inline;
+}
 /**************************************************** MILIEU ************************************************/
 section{ padding: 30px; min-height: 800px; }
+.status {
+  position: absolute;
+  width: 9%;
+  padding: 1%;
+  border: 1px solid black;
+  border-radius: 5px;
+  box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5);
+  background-color: rgba(150, 190, 150, 0.3);
+}
+
+.visiteur {
+  background-color: rgba(200, 150, 150, 0.3);
+}
 /**************************************************** BAS ************************************************/
-footer{ background: #000; color: white; text-align: center; padding: 7px 0;}
+footer{ background: #000; color: white; text-align: center; padding: 7px 0; position: fixed; bottom: 0.25%; width: 100%; box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);}
 /**************************************************** GENERAL ************************************************/
 .erreur{ background: #ff0000; padding: 5px; margin: 5px; }
 .validation{ background: #669933; padding: 5px; margin: 5px; }
@@ -34,3 +75,69 @@ table tr td{
 text-align: center;
 }
 td, th{ padding: 5px; }
+/**************************************************** INSCRIPTION ************************************************/
+.inscription_obj {
+  width: 95%;
+  height: 80%;
+  border: 1px solid black;
+  padding: 2%;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  border-radius: 1.5%;
+  padding-top: 9.5%;
+  padding-bottom: 9%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.inscription_form {
+  width: 35%;
+  height: 590px;
+  border: 1px solid black;
+  padding: 1%;
+  left:20%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align:right;
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+  border-radius: 2%;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+.inscription_form h3 {
+  text-align: center;
+  margin-bottom: 10%;
+  margin-top: 5%;
+  font-size: 22px;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.inscription_form label {
+  margin-right: 20px;
+  float: left;
+}
+
+.inscription_form label, input, textarea, {
+margin: 0.5%;
+margin-bottom: 3%;
+margin-right: 5%;
+}
+
+.inscription_form input, textarea{
+box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.4);
+margin-right: 5%;
+}
+
+.choix_civilite {
+margin-right: 4.5%;
+}
+
+.choix_civilite label {
+margin-left: 4.5%;
+}
+
+.pseutomail, .choix_civilite, .viltoadr {
+  padding: 10px;
+  width: 85%;
+  /**border: 1px solid black;*/
+  float:right;
+  display:block;
+}

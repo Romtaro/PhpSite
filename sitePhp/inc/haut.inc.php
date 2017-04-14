@@ -26,23 +26,23 @@ function __autoload($class_name){
 					<?php
 					if(internauteEstConnecteEtEstAdmin()) // admin
 					{ // BackOffice
-						echo '<a href="' . RACINE_SITE . 'admin/gestion_membre.php">Gestion des membres</a>';
-						echo '<a href="' . RACINE_SITE . 'admin/gestion_commande.php">Gestion des commandes</a>';
-						echo '<a href="' . RACINE_SITE . 'admin/gestion_boutique.php">Gestion de la boutique</a>';
+						echo '<a class="m_adm" href="' . RACINE_SITE . 'admin/gestion_membre.php">Gestion des membres</a>';
+						echo '<a class="m_adm" href="' . RACINE_SITE . 'admin/gestion_commande.php">Gestion des commandes</a>';
+						echo '<a class="m_adm" href="' . RACINE_SITE . 'admin/gestion_boutique.php">Gestion de la boutique</a><br />';
 					}
 					if(internauteEstConnecte()) // membre et admin
 					{
-						echo '<a href="' . RACINE_SITE . 'profil.php">Voir votre profil</a>';
-						echo '<a href="' . RACINE_SITE . 'boutique.php?categorie=tshirt">Accès à la boutique</a>';
-						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
-						echo '<a href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se déconnecter</a>';
+						echo '<a class="m_mem" href="' . RACINE_SITE . 'profil.php">Voir votre profil</a>';
+						echo '<a class="m_mem" href="' . RACINE_SITE . 'boutique.php?categorie=tshirt">Accès à la boutique</a>';
+						echo '<a class="m_mem" href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
+						echo '<a class="m_mem" href="' . RACINE_SITE . 'connexion.php?action=deconnexion">Se déconnecter</a>';
 					}
 					else // visiteur
 					{
 						echo '<a href="' . RACINE_SITE . 'inscription.php">Inscription</a>';
 						echo '<a href="' . RACINE_SITE . 'connexion.php">Connexion</a>';
 						echo '<a href="' . RACINE_SITE . 'boutique.php?categorie=tshirt">Accès à la boutique</a>';
-						echo '<a href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
+						echo '<a class="panier_s" href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
 					}
 					// visiteur=4 liens - membre=4 liens - admin=7 liens
 					?>
@@ -53,12 +53,12 @@ function __autoload($class_name){
 
         if(internauteEstConnecte()) // membre et admin
         {
-          echo '<a href="#" style="cursor:none;">Compte : ' . $_SESSION['membre']['pseudo'] .'</a>';
+          echo '<div class="status"><a href="#" style="cursor:none;">Compte : ' . $_SESSION['membre']['pseudo'] .'</a></div>';
 
         }
         else // visiteur
         {
-          echo '<a href="#" style="cursor:none;">Non-connecté</a>';
+          echo '<div class="status visiteur"><a href="#" style="cursor:none;">Non-connecté</a></div>';
 
         }
 ?>
