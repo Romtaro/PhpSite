@@ -51,7 +51,7 @@ $contenu .= '<a href="?action=ajout">Ajout d\'un produit</a><br /><br /><hr /><b
 if(isset($_GET['action']) && $_GET['action'] == "affichage")
 {
 	$resultat = Database::queryq("SELECT * FROM produit");
-
+	$contenu .= '<div class="formulaire_obj"><div class="gestion_panel">';
 	$contenu .= '<h2> Affichage des produits </h2>';
 	$contenu .= 'Nombre de produit(s) dans la boutique : ' . count($resultat);
 	$contenu .= '<table border="1" cellpadding="5"><tr>';
@@ -96,7 +96,7 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
 		}
 	}
 }
-	$contenu .= '</table><br /><hr /><br />';
+	$contenu .= '</table><br /><hr /><br /></div>';
 }
 //--------------------------------- AFFICHAGE HTML ---------------------------------//
 
@@ -109,13 +109,15 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		foreach($resultat as $key => $produit_actuel){
 }}
 	echo '
+	<div class="formulaire_obj"><div class="formulaire_form ">
+
 	<h1> Formulaire Produits </h1>
 	<form method="post" enctype="multipart/form-data" action="">
 
 		<input type="hidden" id="id_produit" name="id_produit" value="'; if(isset($produit_actuel['id_produit'])) echo $produit_actuel['id_produit']; echo '" />
 
 		<label for="reference">reference</label><br />
-		<input type="text" id="reference" name="reference" placeholder="la r�f�rence de produit" value="'; if(isset($produit_actuel['reference'])) echo $produit_actuel['reference']; echo '" /><br /><br />
+		<input type="text" id="reference" name="reference" placeholder="la référence de produit" value="'; if(isset($produit_actuel['reference'])) echo $produit_actuel['reference']; echo '" /><br /><br />
 
 		<label for="categorie">categorie</label><br />
 		<input type="text" id="categorie" name="categorie" placeholder="la categorie de produit" value="'; if(isset($produit_actuel['categorie'])) echo $produit_actuel['categorie']; echo '"  /><br /><br />
@@ -158,7 +160,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		<input type="text" id="stock" name="stock" placeholder="le stock du produit"  value="'; if(isset($produit_actuel['stock'])) echo $produit_actuel['stock']; echo '" /><br /><br />
 
 		<input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit"/>
-	</form>';
+	</form></div></div>';
 
 }
 require_once("../inc/bas.inc.php"); ?>

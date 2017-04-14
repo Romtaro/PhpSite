@@ -14,7 +14,7 @@ Class Panier{
 
 
 
-   function ajouter($titre,$id_produit,$quantite,$prix)
+   static function ajouter($titre,$id_produit,$quantite,$prix)
   {
     Panier::newPanier();
       $position_produit = array_search($id_produit,  $_SESSION['panier']['id_produit']);

@@ -1,5 +1,7 @@
 <?php
 include("inc/haut.inc.php");
+require_once("inc/class/Panier.php");
+
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 //--- AJOUT PANIER ---//
 if(isset($_POST['ajout_panier']))
@@ -22,17 +24,17 @@ Panier::payer();
 	{
 		Database::query("INSERT INTO commande (id_membre, montant, date_enregistrement) VALUES (" . $_SESSION['membre']['id_membre'] . "," . Panier::montantTotal() . ", NOW())");
 
-		$commandenbr = Database::query("SELECT * FROM commande");
-		//debug($resultat);
-		$id_commande = count($commandenbr);
+		$commandenbr = Database::queryp("SELECT * FROM commande");
+		$commandenbr = $commandenbr['id_commande'];
+		debug($commandenbr);
 
 		for($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++)
 		{
-		 Database::query("INSERT INTO details_commande (id_commande, id_produit, quantite, prix) VALUES ($id_commande, " . $_SESSION['panier']['id_produit'][$i] . "," . $_SESSION['panier']['quantite'][$i] . "," . $_SESSION['panier']['prix'][$i] . ")");
+		 Database::query("INSERT INTO details_commande (id_commande, id_produit, quantite, prix) VALUES ($commandenbr, " . $_SESSION['panier']['id_produit'][$i] . "," . $_SESSION['panier']['quantite'][$i] . "," . $_SESSION['panier']['prix'][$i] . ")");
 		}
 		unset($_SESSION['panier']);
-		mail($_SESSION['membre']['email'], "confirmation de la commande", "Merci votre n° de suivi est le $id_commande", "From:vendeur@dp_site.com");
-		$contenu .= "<div class='validation'>Merci pour votre commande. votre n° de suivi est le $id_commande</div>";
+		mail($_SESSION['membre']['email'], "confirmation de la commande", "Merci votre n° de suivi est le $commandenbr", "From:vendeur@dp_site.com");
+		$contenu .= "<div class='validation'>Merci pour votre commande. votre n° de suivi est le $commandenbr</div>";
 	}
 }
 

@@ -11,7 +11,7 @@ if(isset($_GET['msg']) && $_GET['msg'] == "supok")
 	header("Location:gestion_membre.php");
 }
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
-
+	echo '<div class="formulaire_obj"><div class="gestion_panel">';
 //require_once("../inc/menu.inc.php");
 echo '<h1> Voici les membres inscrit au site </h1>';
 	$resultats = Database::queryq("SELECT * FROM membre");
