@@ -1,48 +1,26 @@
 <?php
-require_once("inc/init.inc.php");
-require_once('inc/class/Database.php');
+include("inc/haut.inc.php");
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 //--- AJOUT PANIER ---//
 if(isset($_POST['ajout_panier']))
 {	// debug($_POST);
 	$resultat = Database::query("SELECT * FROM produit WHERE id_produit=?",array($_POST['id_produit']));
 	foreach( $resultat as $key => $produit){
-	ajouterProduitDansPanier($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
+	Panier::ajouter($produit['titre'],$_POST['id_produit'],$_POST['quantite'],$produit['prix']);
 		}
 }
 //--- VIDER PANIER ---//
 if(isset($_GET['action']) && $_GET['action'] == "vider")
 {
-	unset($_SESSION['panier']);
+	Panier::vider();
 }
 //--- PAIEMENT ---//
 if(isset($_POST['payer']))
 {
-	for($i=0 ;$i < count($_SESSION['panier']['id_produit']) ; $i++)
-	{
-		$resultat = Database::query("SELECT * FROM produit WHERE id_produit=" . $_SESSION['panier']['id_produit'][$i]);
-foreach( $resultat as $key => $produit){
-		if($produit['stock'] < $_SESSION['panier']['quantite'][$i])
-		{
-			$contenu .= '<hr /><div class="erreur">Stock Restant: ' . $produit['stock'] . '</div>';
-			$contenu .= '<div class="erreur">Quantité demandée: ' . $_SESSION['panier']['quantite'][$i] . '</div>';
-			if($produit['stock'] > 0)
-			{
-				$contenu .= '<div class="erreur">la quantité de l\'produit ' . $_SESSION['panier']['id_produit'][$i] . ' à été réduite car notre stock était insuffisant, veuillez vérifier vos achats.</div>';
-				$_SESSION['panier']['quantite'][$i] = $produit['stock'];
-			}
-			else
-			{
-				$contenu .= '<div class="erreur">l\'produit ' . $_SESSION['panier']['id_produit'][$i] . ' à été retiré de votre panier car nous sommes en rupture de stock, veuillez vérifier vos achats.</div>';
-				retirerproduitDuPanier($_SESSION['panier']['id_produit'][$i]);
-				$i--;
-			}
-			$erreur = true;
-		}
-	}}
+Panier::payer();
 	if(!isset($erreur))
 	{
-		Database::query("INSERT INTO commande (id_membre, montant, date_enregistrement) VALUES (" . $_SESSION['membre']['id_membre'] . "," . montantTotal() . ", NOW())");
+		Database::query("INSERT INTO commande (id_membre, montant, date_enregistrement) VALUES (" . $_SESSION['membre']['id_membre'] . "," . Panier::montantTotal() . ", NOW())");
 
 		$commandenbr = Database::query("SELECT * FROM commande");
 		//debug($resultat);
@@ -59,7 +37,7 @@ foreach( $resultat as $key => $produit){
 }
 
 //--------------------------------- AFFICHAGE HTML ---------------------------------//
-include("inc/haut.inc.php");
+
 echo $contenu;
 echo "<table border='1' style='border-collapse: collapse' cellpadding='7'>";
 echo "<tr><td colspan='5'>Panier</td></tr>";
@@ -79,7 +57,7 @@ else
 		echo "<td>" . $_SESSION['panier']['prix'][$i] . "</td>";
 		echo "</tr>";
 	}
-	echo "<tr><th colspan='3'>Total</th><td colspan='2'>" . montantTotal() . " euros</td></tr>";
+	echo "<tr><th colspan='3'>Total</th><td colspan='2'>" . Panier::montantTotal() . " euros</td></tr>";
 	if(internauteEstConnecte())
 	{
 		echo '<form method="post" action="">';
