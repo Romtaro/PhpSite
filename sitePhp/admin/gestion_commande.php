@@ -14,10 +14,13 @@ require_once("../inc/haut.inc.php");
 
 	$information_sur_les_commandes = Database::query("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
 	//debug($information_sur_les_commandes);
-	echo "<p>Nombre de commande(s) : " . count($information_sur_les_commandes) . "</p>";
+	$cnt = count($information_sur_les_commandes);
+	echo "<p>Nombre de commande(s) : " . $cnt . "</p>";
 	//debug($information_sur_les_commandes);
 	echo "<table class='tab2' border=2> <tr>";
-
+if ($cnt == 0) {
+	echo "Il n'y a pas encore de commande !";
+} else {
 	$information_sur_les_commandes = Database::queryp("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
 
 
@@ -81,3 +84,4 @@ require_once("../inc/haut.inc.php");
 		}
 		echo '</table></div>';
 	}
+}

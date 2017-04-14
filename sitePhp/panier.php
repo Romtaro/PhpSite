@@ -24,9 +24,9 @@ Panier::payer();
 	{
 		Database::query("INSERT INTO commande (id_membre, montant, date_enregistrement) VALUES (" . $_SESSION['membre']['id_membre'] . "," . Panier::montantTotal() . ", NOW())");
 
-		$commandenbr = Database::queryp("SELECT * FROM commande");
+		$commandenbr = Database::queryp("SELECT * FROM commande ORDER BY id_commande DESC");
 		$commandenbr = $commandenbr['id_commande'];
-		debug($commandenbr);
+		//debug($commandenbr);
 
 		for($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++)
 		{
