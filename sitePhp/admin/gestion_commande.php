@@ -8,14 +8,15 @@ if(!internauteEstConnecteEtEstAdmin())
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
 require_once("../inc/haut.inc.php");
 //require_once("../inc/menu.inc.php");
+	echo '<div class="formulaire_obj"><div class="gestion_panel">';
 	echo '<h1> Voici les commandes passées sur le site </h1>';
 	echo '<table border="1"><tr>';
 
 	$information_sur_les_commandes = Database::query("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
 	//debug($information_sur_les_commandes);
-	echo "Nombre de commande(s) : " . count($information_sur_les_commandes);
+	echo "<p>Nombre de commande(s) : " . count($information_sur_les_commandes) . "</p>";
 	//debug($information_sur_les_commandes);
-	echo "<table style='border-color:red' border=10> <tr>";
+	echo "<table class='tab2' border=2> <tr>";
 
 	$information_sur_les_commandes = Database::queryp("SELECT c.*, m.pseudo, m.adresse, m.ville, m.code_postal FROM commande c LEFT JOIN membre m ON  m.id_membre = c.id_membre");
 
@@ -49,7 +50,7 @@ require_once("../inc/haut.inc.php");
 	}
 	echo '</table><br />';
 	echo 'Calcul du montant total des revenus:  <br />';
-		print "le chiffre d'affaires de la societe est de : $chiffre_affaire €";
+		echo "le chiffre d'affaires de la societe est de : $chiffre_affaire €";
 
 	echo '<br />';
 	if(isset($_GET['suivi']))
@@ -59,7 +60,7 @@ require_once("../inc/haut.inc.php");
 				echo '<tr>';
 				$information_sur_une_commande = Database::queryp("SELECT * FROM details_commande WHERE id_commande=$_GET[suivi]");
 
-				echo "<table style='border-color:red' border=10> <tr>";
+				echo "<table class='tab2' border=2> <tr>";
 
 				foreach( $information_sur_une_commande as $key => $details_commande)
 				{
@@ -78,5 +79,5 @@ require_once("../inc/haut.inc.php");
 				echo '<td>' . $details_commande['prix'] . '</td>';
 			echo '</tr>';
 		}
-		echo '</table>';
+		echo '</table></div>';
 	}
