@@ -1,7 +1,7 @@
 <?php
-require_once('Routes.php');
+require_once('class/Produits.php');
 require_once('class/Database.php');
-
+require_once('init.inc.php');
 function __autoload($class_name){
         if (file_exists('./class/'.$class_name.'php')){
               require_once'./class/'.$class_name.'.php';
@@ -53,6 +53,6 @@ function __autoload($class_name){
 				</nav>
 			</div>
         </header>
-        <section>     
+        <section>
 
 			<div class="conteneur">
