@@ -26,7 +26,6 @@ if($_POST)
 			}
 
 			Database::query("INSERT INTO membre (pseudo, mdp, nom, prenom, email, civilite, ville, code_postal, adresse, statut) VALUES ('$_POST[pseudo]', '$_POST[mdp]', '$_POST[nom]', '$_POST[prenom]', '$_POST[email]', '$_POST[civilite]', '$_POST[ville]', '$_POST[code_postal]', '$_POST[adresse]', '$_POST[statut]')");
-      Databse::query("UPDATE `membre` SET `statut` = '1' WHERE `membre`.`pseudo=?`'$_POST[pseudo]' ");
 			$contenu .= "<div class='validation'>Vous etes inscrit a notre site web. <a href=\"connexion.php\"><u>Cliquez ici pour vous connecter</u></a></div>";
 		}
 	}
@@ -53,7 +52,11 @@ if($_POST)
 
 	    <label for="email">Email</label>
 	    <input type="email" id="email" name="email" placeholder="exemple@gmail.com"><br><br>
-
+            <label for="statut" id="statut">Elevation</label>
+          <select>
+        <option value="1"> 1</option>
+      <option value="0">0</option>
+    </select>
 
 		</div>
 			<div class="choix_civilite">
