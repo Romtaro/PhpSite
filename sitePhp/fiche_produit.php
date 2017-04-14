@@ -4,7 +4,7 @@ require_once('inc/class/Database.php');
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 if(isset($_GET['id_produit'])) 	{ $resultat = Database::query("SELECT * FROM produit WHERE id_produit =?",array($_GET['id_produit'])); }
 if(count($resultat) <= 0) { header("location:boutique.php"); exit(); }
-debug($resultat);
+//debug($resultat);
 foreach( $resultat as $key => $produit){
 //$produit = $resultat->fetch_assoc();
 $contenu .= "<h3>Titre : $produit[titre]</h3><hr /><br />";
