@@ -38,11 +38,11 @@ if(isset($_GET['pseu']) && $_GET['pseu'] == "do")
 				if(isset($_GET['statut']) && $_GET['statut'] == "1")
 				{
 					$membre_pseudo = $_GET['membre_pseudo'];
-					echo "<div class='validation'>Vous avez bien changé le status" . $membre_pseudo . " en élévation : 1</div>";
+					echo "<div class='validation'>Vous avez bien changé le status <strong>" . $membre_pseudo . "</strong> en élévation : 1</div>";
 				}
 				else {
 					$membre_pseudo = $_GET['membre_pseudo'];
-					echo "<div class='validation'>Vous avez bien changé le status" . $membre_pseudo . " en élévation : 0</div>";
+					echo "<div class='validation'>Vous avez bien changé le status <strong>" . $membre_pseudo . "</strong> en élévation : 0</div>";
 				}
 			}
 
