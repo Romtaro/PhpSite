@@ -41,7 +41,7 @@ if(!empty($_POST))
 		$_POST[$indice] = htmlEntities(addSlashes($valeur));
 	}
 	Database::query("REPLACE INTO produit (id_produit, reference, categorie, titre, description, couleur, taille, public, photo, prix, stock) values ('$_POST[id_produit]', '$_POST[reference]', '$_POST[categorie]', '$_POST[titre]', '$_POST[description]', '$_POST[couleur]', '$_POST[taille]', '$_POST[public]',  '$photo_bdd',  '$_POST[prix]',  '$_POST[stock]')");
-	$contenu .= '<div class="validation">Le produit a �t� enregistr�</div>';
+	$contenu .= '<div class="validation">Le produit a été enregistré</div>';
 	$_GET['action'] = 'affichage';
 }
 //--- LIENS PRODUITS ---//
@@ -109,11 +109,11 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		foreach($resultat as $key => $produit_actuel){
 }}
 	echo '
-	<div class="formulaire_obj"><div class="formulaire_form">
+	<div class="formulaire_obj"><div class="formulaire_form form_prod">
 
 	<h1> Formulaire Produits </h1>
 	<form method="post" enctype="multipart/form-data" action="">
-
+		<div class="pseutomail">
 		<input type="hidden" id="id_produit" name="id_produit" value="'; if(isset($produit_actuel['id_produit'])) echo $produit_actuel['id_produit']; echo '" />
 
 		<label for="reference">reference</label><br />
@@ -126,8 +126,9 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		<input type="text" id="titre" name="titre" placeholder="le titre du produit" value="'; if(isset($produit_actuel['titre'])) echo $produit_actuel['titre']; echo '"  /> <br /><br />
 
 		<label for="description">description</label><br />
-		<textarea name="description" id="description" placeholder="la description du produit">'; if(isset($produit_actuel['description'])) echo $produit_actuel['description']; echo '</textarea><br /><br />
-
+		<textarea name="description" id="description" placeholder="la description du produit" cols=45 rows=10>'; if(isset($produit_actuel['description'])) echo $produit_actuel['description']; echo '</textarea><br /><br />
+		</div>
+<div class="pseutomail">
 		<label for="couleur">couleur</label><br />
 		<input type="text" id="couleur" name="couleur" placeholder="la couleur du produit"  value="'; if(isset($produit_actuel['couleur'])) echo $produit_actuel['couleur']; echo '" /> <br /><br />
 
@@ -138,11 +139,13 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 			<option value="L"'; if(isset($produit_actuel) && $produit_actuel['taille'] == 'L') echo ' selected '; echo '>L</option>
 			<option value="XL"'; if(isset($produit_actuel) && $produit_actuel['taille'] == 'XL') echo ' selected '; echo '>XL</option>
 		</select><br /><br />
-
+		</div>
+<div class="choix_civilite">
 		<label for="public">public</label><br />
 		<input type="radio" name="public" value="m"'; if(isset($produit_actuel) && $produit_actuel['public'] == 'm') echo ' checked '; elseif(!isset($produit_actuel) && !isset($_POST['public'])) echo 'checked'; echo '/>Homme
 		<input type="radio" name="public" value="f"'; if(isset($produit_actuel) && $produit_actuel['public'] == 'f') echo ' checked '; echo '/>Femme<br /><br />
-
+		</div>
+<div class="pseutomail">
 		<label for="photo">photo</label><br />
 		<input type="file" id="photo" name="photo" /><br /><br />';
 		if(isset($produit_actuel))
@@ -159,7 +162,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		<label for="stock">stock</label><br />
 		<input type="text" id="stock" name="stock" placeholder="le stock du produit"  value="'; if(isset($produit_actuel['stock'])) echo $produit_actuel['stock']; echo '" /><br /><br />
 
-		<input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit"/>
+		<input type="submit" value="'; echo ucfirst($_GET['action']) . ' du produit"/></div>
 	</form></div></div>';
 
 }
