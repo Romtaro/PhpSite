@@ -18,7 +18,8 @@ if(isset($_GET['pseu']) && $_GET['pseu'] == "do")
 	{
 	if(isset($_POST['level'])) {
 			$value = $_POST['level'];
-			if($POST['level']) == "1") {
+			if(isset($_POST['level'])) {
+				if($_POST['level'] == "1"){
 			$membre_pseudo = $_GET['membre_pseudo'];
 			Database::query("UPDATE membre SET statut=$value WHERE pseudo=?", array($membre_pseudo));
 			header("Location:gestion_membre.php?pseu=do&&membre_pseudo=". $membre_pseudo ."&&valider=ok&&statut=1");
@@ -27,8 +28,8 @@ if(isset($_GET['pseu']) && $_GET['pseu'] == "do")
 			$membre_pseudo = $_GET['membre_pseudo'];
 			Database::query("UPDATE membre SET statut=$value WHERE pseudo=?", array($membre_pseudo));
 			header("Location:gestion_membre.php?pseu=do&&membre_pseudo=". $membre_pseudo ."&&valider=ok&&statut=0");
+			}
 		}
-
 		}
 
 
@@ -45,11 +46,9 @@ if(isset($_GET['pseu']) && $_GET['pseu'] == "do")
 				}
 			}
 
-			if
-			$membre_pseudo = $_GET['membre_pseudo'];
-			echo "<div class='validation'>Vous avez bien changé le status" . $membre_pseudo . " en élévation : 1</div>";
+
 		}
-}
+
 
 
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
