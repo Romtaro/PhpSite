@@ -50,7 +50,7 @@ if(!internauteEstConnecteEtEstAdmin())
 	}
 	echo '</table><br />';
 	echo 'Calcul du montant total des revenus:  <br />';
-		print "le chiffre d'affaires de la societe est de : $chiffre_affaire €";
+		echo "le chiffre d'affaires de la societe est de : $chiffre_affaire €";
 
 	echo '<br />';
 	if(isset($_GET['suivi']))

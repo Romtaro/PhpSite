@@ -146,7 +146,7 @@ td, th{ padding: 5px; }
   float: left;
 }
 
-.formulaire_form label, input, textarea, {
+.formulaire_form label, input, textarea, select {
 margin: 0.5%;
 margin-bottom: 3%;
 margin-right: 5%;
