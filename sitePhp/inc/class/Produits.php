@@ -1,3 +1,4 @@
+p");
 <?php
 
 /**
@@ -10,7 +11,7 @@ class Produits
 {
     private $data;
 
-    public function affiche($res)
+    public function traitementProduit($res)
     {
 
         foreach ($res as $key => $produit) {
