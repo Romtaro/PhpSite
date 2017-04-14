@@ -16,7 +16,8 @@ class Produits
 
         foreach ($res as $key => $produit) {
 //$produit = $resultat->fetch_assoc();
-            $this->data = "<h3>Titre : $produit[titre]</h3><hr /><br />";
+            $this->data = "<div class='boutique'><div class='fiche'>";
+            $this->data .= "<h3>Titre : $produit[titre]</h3><hr /><br />";
             $this->data .= "<p>Categorie: $produit[categorie]</p>";
             $this->data .= "<p>Couleur: $produit[couleur]</p>";
             $this->data .= "<p>Taille: $produit[taille]</p>";
@@ -39,7 +40,7 @@ class Produits
         } else {
             $this->data .= 'Rupture de stock !';
         }
-        $this->data .= "<br /><a href='boutique.php?categorie=" . $produit['categorie'] . "'>Retour vers la séléction de " . $produit['categorie'] . "</a>";
+        $this->data .= "<br /><a href='boutique.php?categorie=" . $produit['categorie'] . "'>Retour vers la séléction de " . $produit['categorie'] . "</a></div>";
 
     }
 
