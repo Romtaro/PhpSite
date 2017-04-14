@@ -8,7 +8,7 @@ if(!internauteEstConnecte())
 //$contenu .= '<p class="centre">Bonjour <strong>' . $_SESSION['membre']['pseudo'] . '</strong></p>'; // exercice: tenter d'afficher le pseudo de l'internaute pour lui dire Bonjour.
 $profil = new Profil();
 
-$profil->traitementProfil();
+$profil ->traitementProfil();
 
 //--------------------------------- AFFICHAGE HTML ---------------------------------//
 
