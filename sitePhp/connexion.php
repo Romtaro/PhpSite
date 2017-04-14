@@ -13,7 +13,7 @@ if(internauteEstConnecte())
 	header("location:profil.php");
 }
 if($_POST)
-{		
+{
     $membre = Database::query("SELECT * FROM membre WHERE pseudo=?",array($_POST['pseudo']));
     debug($membre);
     if(count($membre) > 0 )
@@ -53,7 +53,7 @@ if($_POST)
     <input type="text" id="pseudo" name="pseudo" /><br /> <br />
 
     <label for="mdp">Mot de passe</label><br />
-    <input type="text" id="mdp" name="mdp" /><br /><br />
+    <input type="password" id="mdp" name="mdp" /><br /><br />
 
      <input type="submit" value="Se connecter"/>
 	 </div>
