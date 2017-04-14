@@ -1,7 +1,7 @@
 <?php
 require_once("inc/init.inc.php");
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
-if(!internauteEstConnecte()) 
+if(!internauteEstConnecte())
 {
 	header("location:connexion.php");
 }
@@ -11,8 +11,10 @@ $contenu .= '<p> votre email est: ' . $_SESSION['membre']['email'] . '<br>';
 $contenu .= 'votre ville est: ' . $_SESSION['membre']['ville'] . '<br>';
 $contenu .= 'votre cp est: ' . $_SESSION['membre']['code_postal'] . '<br>';
 $contenu .= 'votre adresse est: ' . $_SESSION['membre']['adresse'] . '</p></div><br /><br />';
-	
+
 //--------------------------------- AFFICHAGE HTML ---------------------------------//
 require_once("inc/haut.inc.php");
 echo $contenu;
+echo '<a href="' . RACINE_SITE . 'membres.php" OnClick="return(confirm(\'Vous allez basculer sur la modification du profil, continuez ?\'));"><img src="'. RACINE_SITE .'inc/img/edit.png" /></a>';
+
 require_once("inc/bas.inc.php");
