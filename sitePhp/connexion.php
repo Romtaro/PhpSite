@@ -13,7 +13,7 @@ if(internauteEstConnecte())
 	header("location:profil.php");
 }
 if($_POST)
-{
+{		
     $membre = Database::query("SELECT * FROM membre WHERE pseudo=?",array($_POST['pseudo']));
     debug($membre);
     if(count($membre) > 0 )

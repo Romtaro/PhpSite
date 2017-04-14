@@ -40,10 +40,10 @@ Panier::payer();
 				 	if($key == 'stock') {
 						$id_prod = $_SESSION['panier']['id_produit'][0];
 						$v = $_SESSION['panier']['quantite'][0];
-						debug($v);
+						//debug($v);
 						$value -= $v;
-						debug($value);
-						Database::query("UPDATE produit SET stock=".$value. " WHERE id_produit=".$id_prod."");
+						//debug($value);
+						Database::query("UPDATE produit SET stock=$value WHERE id_produit=?", array($id_prod));
 			 			}
 			 }
 		}

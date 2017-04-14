@@ -5,11 +5,48 @@ if(!internauteEstConnecteEtEstAdmin())
 	header("location:../connexion.php");
 	exit();
 }
+
+
+
 if(isset($_GET['msg']) && $_GET['msg'] == "supok")
 {
 	Database::query("delete from membre where id_membre=$_GET[id_membre]");
 	header("Location:gestion_membre.php");
 }
+
+if(isset($_GET['pseu']) && $_GET['pseu'] == "do")
+	{
+		$membre_pseudo = $_GET['membre_pseudo'];
+	if(isset($_POST['level_fab'])) {
+			$value = $_POST['level_fab'];
+			if($value == "1") {
+			Database::query("UPDATE membre SET statut=$value WHERE pseudo=?", array($membre_pseudo));
+			header("Location:gestion_membre.php?pseu=do&&valider=ok&&statut=1");
+		}
+		else {
+			Database::query("UPDATE membre SET statut=$value WHERE pseudo=?", array($membre_pseudo));
+			header("Location:gestion_membre.php?pseu=do&&valider=ok&&statut=0");
+		}
+
+		}
+
+
+		if(isset($_GET['valider']) && $_GET['valider'] == "ok")
+			{
+				if(isset($_GET['statut']) && $_GET['statut'] == "1")
+				{
+
+					echo "<div class='validation'>Vous avez bien changé le status en élévation : 1</div>";
+				}
+				else {
+
+					echo "<div class='validation'>Vous avez bien changé le status en élévation : 0</div>";
+				}
+			}
+
+		}
+
+
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
 	echo '<div class="formulaire_obj"><div class="gestion_panel">';
 //require_once("../inc/menu.inc.php");
@@ -24,7 +61,7 @@ echo '<h1> Voici les membres inscrit au site </h1>';
 		echo '<th>' . $key. '</th>';
 	}
 	echo '<th> Supprimer </th>';
-	echo "<th><a href='gestion_admin.php' 'onclick='return(confirm(\"Ajouter un compte Admin ?\"));'>Ajouter Admin</th>";
+	echo "<th>Modification statut</th>";
 
 	echo "</tr>";
 	foreach($resultats as $key => $membre)
@@ -38,9 +75,18 @@ echo '<h1> Voici les membres inscrit au site </h1>';
 			echo '<td>' . $information . '</td>';
 		}
 		echo "<td><a href='gestion_membre.php?msg=supok&&id_membre=" . $membre['id_membre'] . "' onclick='return(confirm(\"Etes-vous sûr de vouloir supprimer ce membre?\"));'> X </a></td>";
-		echo "<td><a href='gestion_membre.php" . $membre['id_membre'] . "' onclick='return(confirm(\"Etes-vous sûr de vouloir supprimer ce membre?\"));'> V </a></td>";
+
+		echo  '<td>
+
+		 <form id="elevation_'. $membre['pseudo'] .'" name="elevation_'. $membre['pseudo'] .'" onclick="return(confirm(\"Etes-vous sûr de vouloir modifier le statut de ce membre?\"));" method="post" action="gestion_membre.php?pseu=do&&membre_pseudo='. $membre['pseudo'] . '">
+					<select name="level_'. $membre['pseudo'] .'">
+				<option name="level_'. $membre['pseudo'] .'" value="1"> 1</option>
+			<option name="level_'. $membre['pseudo'] .'" value="0" selected>0</option>
+		</select>
+</form>
+ </td>';
 
 		echo '</tr>';
 }
 
-	echo '</table>';
+	echo '</table><input form="elevation_'. $membre['pseudo'] .'" name="chg_admin" value="Confirmer" type="submit">';
