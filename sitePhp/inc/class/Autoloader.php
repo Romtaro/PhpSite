@@ -8,7 +8,7 @@ class Autoloader{
     static function autoload($class){
 
       require_once"$class.php";
-      
+    
 
     }
 }

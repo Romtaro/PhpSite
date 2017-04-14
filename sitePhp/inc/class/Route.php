@@ -1,5 +1,5 @@
 <?php
-class Route {
+/*class Route {
 
         private $path;
         private $callable;
@@ -20,5 +20,5 @@ class Route {
 
 //        }
 
-}
+//}
 ?>

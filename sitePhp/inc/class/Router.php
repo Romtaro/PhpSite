@@ -1,5 +1,5 @@
 <?php
-require_once("Route.php");
+/*require_once("Route.php");
 class Router {
 
         private $url;
@@ -20,7 +20,7 @@ class Router {
                 }    */
 
         }
-        public static function post($path, $callable){
+        /*public static function post($path, $callable){
 
                 $route = new Route($path, $callable);
                 $this->routes['POST'] = $route;
