@@ -1,12 +1,12 @@
 <?php
-require_once("../inc/init.inc.php");
+require_once("../inc/haut.inc.php");
 if(!internauteEstConnecteEtEstAdmin())
 {
 	header("location:../connexion.php");
 	exit();
 }
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
-require_once("../inc/haut.inc.php");
+
 //require_once("../inc/menu.inc.php");
 	echo '<h1> Voici les commandes passées sur le site </h1>';
 	echo '<table border="1"><tr>';

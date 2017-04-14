@@ -1,6 +1,5 @@
 <?php
-require_once('../inc/class/Database.php');
-require_once("../inc/init.inc.php");
+require_once("../inc/haut.inc.php");
 if(!internauteEstConnecteEtEstAdmin())
 {
 	header("location:../connexion.php");
@@ -12,7 +11,7 @@ if(isset($_GET['msg']) && $_GET['msg'] == "supok")
 	header("Location:gestion_membre.php");
 }
 //-------------------------------------------------- Affichage ---------------------------------------------------------//
-require_once("../inc/haut.inc.php");
+
 //require_once("../inc/menu.inc.php");
 echo '<h1> Voici les membres inscrit au site </h1>';
 	$resultats = Database::queryq("SELECT * FROM membre");
