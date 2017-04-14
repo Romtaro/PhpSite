@@ -50,14 +50,15 @@ $contenu .= '<a href="?action=ajout">Ajout d\'un produit</a><br /><br /><hr /><b
 //--- AFFICHAGE PRODUITS ---//
 if(isset($_GET['action']) && $_GET['action'] == "affichage")
 {
-	$resultat = Database::queryp("SELECT * FROM produit");
+	$resultat = Database::queryq("SELECT * FROM produit");
 
 	$contenu .= '<h2> Affichage des produits </h2>';
 	$contenu .= 'Nombre de produit(s) dans la boutique : ' . count($resultat);
 	$contenu .= '<table border="1" cellpadding="5"><tr>';
-  $resultatTitle = Database::queryp("SELECT * FROM produit");
-		//	debug($resultatTitle);
-	foreach($resultatTitle as $key=> $colonne)
+  $resultatTitle = Database::queryq("SELECT * FROM produit");
+	$resultatTitle = $resultatTitle[0];
+
+	foreach($resultatTitle as $key => $colonne)
 	{
 		$contenu .= '<th>' . $key . '</th>';
 	}
@@ -65,28 +66,36 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
 	$contenu .= '<th>Supression</th>';
 	$contenu .= '</tr>';
 
-	$resultat = Database::queryp("SELECT * FROM produit");
+	$resultat = Database::queryq("SELECT * FROM produit");
 
-	foreach($resultat as $key => $ligne)
+	$cnt = count($resultat);
+
+	for($i = 0; $i < $cnt; $i++)
 	{
-$contenu .= '<tr>';
-debug($key);
-//debug($key);
-//debug($ligne);
-
+		$contenu .= '<tr>';
+		//debug($resultat[$i]);
+		foreach($resultat[$i] as $key => $ligne)
+		{
 			if($key == "photo")
 			{
-				$contenu .= '<td><img src="' . $information . '" width="70" height="70" /></td>';
+				$contenu .= '<td><img src="' . $ligne . '" width="70" height="70" /></td>';
 			}
 			else
 			{
-				$contenu .= '<td>' . $information . '</td>';
+				$contenu .= '<td>' . $ligne . '</td>';
 			}
 
-		$contenu .= '<td><a href="?action=modification&id_produit=' . $ligne['id_produit'] .'"><img src="../inc/img/edit.png" /></a></td>';
-		$contenu .= '<td><a href="?action=suppression&id_produit=' . $ligne['id_produit'] .'" OnClick="return(confirm(\'En �tes vous certain ?\'));"><img src="../inc/img/delete.png" /></a></td>';
+		}
+		foreach($resultat[$i] as $key => $ligne)
+		{
+			if($key == "id_produit")
+			{
+		$contenu .= '<td><a href="?action=modification&id_produit=' . $ligne .'"><img src="'. RACINE_SITE .'/inc/img/edit.png" /></a></td>';
+		$contenu .= '<td><a href="?action=suppression&id_produit=' . $ligne .'" OnClick="return(confirm(\'En êtes vous certain ?\'));"><img src="../inc/img/delete.png" /></a></td>';
 		$contenu .= '</tr>';
+		}
 	}
+}
 	$contenu .= '</table><br /><hr /><br />';
 }
 //--------------------------------- AFFICHAGE HTML ---------------------------------//
