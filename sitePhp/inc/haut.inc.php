@@ -49,5 +49,4 @@ require_once('init.inc.php');
 			</div>
         </header>
         <section>
-
 			<div class="conteneur">

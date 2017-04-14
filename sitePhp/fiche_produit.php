@@ -13,7 +13,9 @@ if(isset($_GET['id_produit'])) 	{
 $produits->traitementProduit($resultat);
 
 if(count($resultat) <= 0) {
-    header("location:boutique.php"); exit(); }
+    header("location:boutique.php");
+    exit();
+   }
 
 $produits->show();
 require_once("inc/bas.inc.php");
