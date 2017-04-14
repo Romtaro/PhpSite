@@ -49,5 +49,18 @@ function __autoload($class_name){
 				</nav>
 			</div>
         </header>
-        <section>
+        <section>            <?php
+
+        if(internauteEstConnecte()) // membre et admin
+        {
+          echo '<a href="#" style="cursor:none;">Compte : ' . $_SESSION['membre']['pseudo'] .'</a>';
+
+        }
+        else // visiteur
+        {
+          echo '<a href="#" style="cursor:none;">Non-connecté</a>';
+
+        }
+?>
+
 			<div class="conteneur">
