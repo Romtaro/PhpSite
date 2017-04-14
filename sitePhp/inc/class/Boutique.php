@@ -12,15 +12,15 @@ class Boutique
 
     public function traitementBoutique($res)
     {
-
-        $this->data = '<div class="boutique-gauche">';
+        $this->data = '<div class="formulaire_obj"><h1>Boutique</h1>';
+        $this->data .= '<div class="boutique-gauche">';
         $this->data .= "<ul>";
 
         foreach ($res as $key => $cat) {
 
             // 	debug($key);
 
-            $this->data .= "<li><a href='?categorie=" . $cat['categorie'] . "'>" . $cat['categorie'] . "</a></li>";
+            $this->data .= "<li><a href='?categorie=" . $cat['categorie'] . "'>" . $cat['categorie'] . "</a></li><hr>";
         }
         $this->data .= "</ul>";
         $this->data .= "</div>";
@@ -46,7 +46,7 @@ class Boutique
                 $this->data .= '</div>';
             }
         }
-           $this->data .= '</div>';
+           $this->data .= '</div></div>';
     }
 
     public function show(){

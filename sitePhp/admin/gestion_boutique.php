@@ -54,7 +54,7 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
 	$contenu .= '<div class="formulaire_obj"><div class="gestion_panel">';
 	$contenu .= '<h2> Affichage des produits </h2>';
 	$contenu .= 'Nombre de produit(s) dans la boutique : ' . count($resultat);
-	$contenu .= '<table border="1" cellpadding="5"><tr>';
+	$contenu .= '<table class="tab2" border="1" cellpadding="5"><tr>';
   $resultatTitle = Database::queryq("SELECT * FROM produit");
 	$resultatTitle = $resultatTitle[0];
 
@@ -109,7 +109,7 @@ if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == '
 		foreach($resultat as $key => $produit_actuel){
 }}
 	echo '
-	<div class="formulaire_obj"><div class="formulaire_form ">
+	<div class="formulaire_obj"><div class="formulaire_form">
 
 	<h1> Formulaire Produits </h1>
 	<form method="post" enctype="multipart/form-data" action="">

@@ -16,7 +16,7 @@ if(isset($_GET['msg']) && $_GET['msg'] == "supok")
 echo '<h1> Voici les membres inscrit au site </h1>';
 	$resultats = Database::queryq("SELECT * FROM membre");
 	echo "Nombre de membre(s) : " . count($resultats);
-	echo "<table style='border-color:red' border=10> <tr>";
+	echo "<table class='tab2' border=2> <tr>";
 		$resultat = Database::queryp("SELECT * FROM membre");
 	foreach($resultat as $key => $colonne)
 	//debug($colonne);
