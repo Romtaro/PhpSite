@@ -24,6 +24,7 @@ echo '<h1> Voici les membres inscrit au site </h1>';
 		echo '<th>' . $key. '</th>';
 	}
 	echo '<th> Supprimer </th>';
+	echo "<td><a href='gestion_admin.php' 'onclick='return(confirm(\"Ajouter un compte Admin ?\"));'>Ajouter Admin</td>";
 	echo "</tr>";
 	foreach($resultats as $key => $membre)
 	{
@@ -38,4 +39,5 @@ echo '<h1> Voici les membres inscrit au site </h1>';
 		echo "<td><a href='gestion_membre.php?msg=supok&&id_membre=" . $membre['id_membre'] . "' onclick='return(confirm(\"Etes-vous sûr de vouloir supprimer ce membre?\"));'> X </a></td>";
 		echo '</tr>';
 }
+
 	echo '</table>';
