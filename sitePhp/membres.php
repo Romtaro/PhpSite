@@ -70,8 +70,8 @@ if(isset($_GET['action']) && $_GET['action'] == 'modif')
 <div class="choix_civilite">
 			<label for="sexe">Sexe</label>
 					<select id="sexe" name="sexe">
-						<option value="m" <?php if(isset($_SESSION['membre']['sexe']) && $_SESSION['membre']['sexe'] == "m") print "selected"; ?>>Homme</option>
-						<option value="f" <?php if(isset($_SESSION['membre']['sexe']) && $_SESSION['membre']['sexe'] == "f") print "selected"; ?>>Femme</option>
+						<option value="m" <?php if(isset($_SESSION['membre']['civilite']) && $_SESSION['membre']['civilite'] == "m") print "selected"; ?>>Homme</option>
+						<option value="f" <?php if(isset($_SESSION['membre']['civilite']) && $_SESSION['membre']['civilite'] == "f") print "selected"; ?>>Femme</option>
 					</select><br />
 </div>
 			<label for="ville">Ville</label>

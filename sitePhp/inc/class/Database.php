@@ -33,6 +33,7 @@ class Database{
         $data= $statement->fetch(PDO::FETCH_ASSOC);
         return $data;
       }
+
     }
 
     public static function queryq($query, $params = array()){

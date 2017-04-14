@@ -26,11 +26,26 @@ Panier::payer();
 
 		$commandenbr = Database::queryp("SELECT * FROM commande ORDER BY id_commande DESC");
 		$commandenbr = $commandenbr['id_commande'];
-		//debug($commandenbr);
-
+		$id_prod = $_SESSION['panier']['id_produit'];
 		for($i = 0; $i < count($_SESSION['panier']['id_produit']); $i++)
 		{
+			//debug($id_prod);
 		 Database::query("INSERT INTO details_commande (id_commande, id_produit, quantite, prix) VALUES ($commandenbr, " . $_SESSION['panier']['id_produit'][$i] . "," . $_SESSION['panier']['quantite'][$i] . "," . $_SESSION['panier']['prix'][$i] . ")");
+		 $stock_base = Database::queryq("SELECT * FROM produit WHERE id_produit=?", $id_prod);
+		 //debug($stock_base);
+		 $stock_base = $stock_base[0];
+		 //debug($stock_base);
+		 foreach ($stock_base as $key => $value) {
+			 //debug($key);
+				 	if($key == 'stock') {
+						$id_prod = $_SESSION['panier']['id_produit'][0];
+						$v = $_SESSION['panier']['quantite'][0];
+						debug($v);
+						$value -= $v;
+						debug($value);
+						Database::query("UPDATE produit SET stock=".$value. " WHERE id_produit=".$id_prod."");
+			 			}
+			 }
 		}
 		unset($_SESSION['panier']);
 		mail($_SESSION['membre']['email'], "confirmation de la commande", "Merci votre n° de suivi est le $commandenbr", "From:vendeur@dp_site.com");
