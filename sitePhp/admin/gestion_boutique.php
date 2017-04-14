@@ -1,6 +1,6 @@
 <?php
-require_once("../inc/init.inc.php");
-require_once('../inc/class/Database.php');
+require_once("../inc/haut.inc.php");
+
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 //--- VERIFICATION ADMIN ---//
 if(!internauteEstConnecteEtEstAdmin())
@@ -99,7 +99,7 @@ if(isset($_GET['action']) && $_GET['action'] == "affichage")
 	$contenu .= '</table><br /><hr /><br />';
 }
 //--------------------------------- AFFICHAGE HTML ---------------------------------//
-require_once("../inc/haut.inc.php");
+
 echo $contenu;
 if(isset($_GET['action']) && ($_GET['action'] == 'ajout' || $_GET['action'] == 'modification'))
 {

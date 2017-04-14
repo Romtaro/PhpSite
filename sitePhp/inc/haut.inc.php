@@ -1,6 +1,6 @@
 <?php
 
-require_once('inc/class/Autoloader.php');
+require_once('class/Autoloader.php');
 Autoloader::register();
 require_once('init.inc.php');
 
