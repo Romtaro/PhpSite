@@ -1,39 +1,27 @@
 <?php
-require_once("inc/haut.inc.php");
+	require_once("inc/haut.inc.php");
 
 
-if($_POST)
-{
-	if(!empty($_POST['mdp']))
+	if($_POST)
 	{
-		$membre=Database::query("update membre SET mdp='$_POST[mdp]', nom='$_POST[nom]', prenom='$_POST[prenom]', email='$_POST[email]', civilite='$_POST[sexe]', ville='$_POST[ville]', code_postal='$_POST[cp]', adresse='$_POST[adresse]' where id_membre='".$_SESSION['membre']['id_membre']."'");
-		unset($_SESSION['membre']);
-		foreach($membre as $indice => $element)
-		{
-			if($indice != 'mdp')
-			{
-				$_SESSION['membre'][$indice] = $element;
-			}
-			else
-			{
-				$_SESSION['membre'][$indice] = $_POST['mdp'];
-			}
+	    $membre = new Membre($_POST);
+		if(!empty($_POST['mdp'])) {
+	        $user = Database::query("update membre SET mdp='$_POST[mdp]', nom='$_POST[nom]', prenom='$_POST[prenom]', email='$_POST[email]', civilite='$_POST[sexe]', ville='$_POST[ville]', code_postal='$_POST[cp]', adresse='$_POST[adresse]' where id_membre='" . $_SESSION['membre']['id_membre'] . "'");
+	        $membre = new Membre($user);
+	        $membre->traiatementMembre($user);
+	    }
+	    else {
+		    $membre->mdpvide();
 		}
-		header("Location:membres.php?action=modif");
-	}
-	else
+
+
+
+
+	if(isset($_GET['action']) && $_GET['action'] == 'modif')
 	{
-		$msg = "le nouveau mot de passe doit être renseigné !";
-			echo $msg;
+	    $membre->successModifMdp();
 	}
-}
 
-
-
-if(isset($_GET['action']) && $_GET['action'] == 'modif')
-{
-	$msg = "la modification à bien été prise en compte";
-	echo $msg;
 }
 
 
