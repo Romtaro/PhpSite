@@ -33,8 +33,8 @@ if($_POST)
 ?>
 <?php require_once("inc/haut.inc.php"); ?>
 <?php echo $contenu; ?>
-<div class="inscription_obj">
-	<div class="inscription_form">
+<div class="formulaire_obj">
+	<div class="formulaire_form">
 		<h3>Inscription</h3>
 		<form method="post" action="">
 			<div class="pseutomail">

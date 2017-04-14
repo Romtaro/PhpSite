@@ -44,8 +44,11 @@ if($_POST)
 ?>
 <?php require_once("inc/haut.inc.php"); ?>
 <?php echo $contenu; ?>
-
+<div class="formulaire_obj">
+	<div class="formulaire_form">
 <form method="post" action="">
+	<h3>Connexion : </h3>
+	<div class="login">
     <label for="pseudo">Pseudo</label><br />
     <input type="text" id="pseudo" name="pseudo" /><br /> <br />
 
@@ -53,6 +56,7 @@ if($_POST)
     <input type="text" id="mdp" name="mdp" /><br /><br />
 
      <input type="submit" value="Se connecter"/>
+	 </div>
 </form>
-
+</div>
 <?php require_once("inc/bas.inc.php"); ?>

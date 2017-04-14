@@ -32,6 +32,8 @@ function __autoload($class_name){
 					}
 					if(internauteEstConnecte()) // membre et admin
 					{
+            echo '<div class="status"><a href="#" style="cursor:none;">Compte : ' . $_SESSION['membre']['pseudo'] .'</a></div>';
+
 						echo '<a class="m_mem" href="' . RACINE_SITE . 'profil.php">Voir votre profil</a>';
 						echo '<a class="m_mem" href="' . RACINE_SITE . 'boutique.php?categorie=tshirt">Accès à la boutique</a>';
 						echo '<a class="m_mem" href="' . RACINE_SITE . 'panier.php">Voir votre panier</a>';
@@ -39,6 +41,8 @@ function __autoload($class_name){
 					}
 					else // visiteur
 					{
+            echo '<div class="status visiteur"><a href="#" style="cursor:none;">Non-connecté</a></div>';
+
 						echo '<a href="' . RACINE_SITE . 'inscription.php">Inscription</a>';
 						echo '<a href="' . RACINE_SITE . 'connexion.php">Connexion</a>';
 						echo '<a href="' . RACINE_SITE . 'boutique.php?categorie=tshirt">Accès à la boutique</a>';
@@ -49,18 +53,6 @@ function __autoload($class_name){
 				</nav>
 			</div>
         </header>
-        <section>            <?php
-
-        if(internauteEstConnecte()) // membre et admin
-        {
-          echo '<div class="status"><a href="#" style="cursor:none;">Compte : ' . $_SESSION['membre']['pseudo'] .'</a></div>';
-
-        }
-        else // visiteur
-        {
-          echo '<div class="status visiteur"><a href="#" style="cursor:none;">Non-connecté</a></div>';
-
-        }
-?>
+        <section>     
 
 			<div class="conteneur">
