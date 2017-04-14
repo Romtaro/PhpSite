@@ -1,6 +1,8 @@
 <?php
 require_once("inc/init.inc.php");
-require_once('inc/class/Database.php');
+//require_once('inc/class/Database.php');
+require_once('inc/class/Autoloader.php');
+Autoloader::register();
 //--------------------------------- TRAITEMENTS PHP ---------------------------------//
 if(isset($_GET['action']) && $_GET['action'] == "deconnexion")
 {

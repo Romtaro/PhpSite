@@ -2,7 +2,7 @@
 require_once('class/Route.php');
 require_once('class/Database.php');
 
-Route::set('connexion.php',function(){
+/*Route::set('connexion.php',function(){
         ControConnect::CreateView('connexion');
 });
 
@@ -20,5 +20,5 @@ Route::set('boutique.php',function(){
 
 Route::set('membres.php',function(){
         ControMembre::CreateView('membres');
-});
+});*/
 ?>

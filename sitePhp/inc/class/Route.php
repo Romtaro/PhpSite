@@ -1,9 +1,16 @@
 <?php
 class Route {
 
-        public static $validRoutes= array();
+        private $path;
+        private $callable;
 
-        public static function set($route, $function){
+        public function __construct($path, $callable){
+          $this->path = $path;
+          $this->callable = $callable;
+        }
+
+
+    /*    public static function set($route, $function){
 
                 self::$validRoutes[] = $route;
 
@@ -11,7 +18,7 @@ class Route {
                       $function-> __invoke();
                 }    */
 
-        }
+//        }
 
 }
 ?>
