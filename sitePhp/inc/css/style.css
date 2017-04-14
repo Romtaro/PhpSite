@@ -1,7 +1,7 @@
 /**************************************************** GENERAL ************************************************/
 *{ margin: 0; }
 body{ font-family : verdana; font-size: 12px; }
-a{ text-decoration: none; color: #000; }
+a{ text-decoration: none; color: #000;border-radius: 5px; }
 .conteneur{ margin: 0 auto; max-width: 1170px; width: 100%;}
 .conteneur a{ margin-right: 25px;margin-left: 25px;}
 a.panier_s {
@@ -66,13 +66,17 @@ footer{ background: #000; color: white; text-align: center; padding: 7px 0; posi
 .cadre  p{ padding: 10px; }
 .centre{text-align: center;}
 /**************************************************** BOUTIQUE ************************************************/
-.boutique-gauche{ float: left; width: 30%; background: #f2f2f2; min-height: 500px; margin-right: 10%; padding-top: 10px; text-align: center; }
+.boutique-gauche{ box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4); float: left; width: 20%; background: #f2f2f2; min-height: 500px;margin-right: 10%; margin-left: 5%;padding-top: 10px; text-align: center; }
 .boutique-gauche  ul{ list-style: none; padding: 0; }
 .boutique-gauche  ul  li  a{ display: block; padding: 10px; }
 .boutique-gauche  ul  li  a:hover{ background: #04baf6; color: #fff; }
-.boutique-droite{float: left; width: 60%; }
-.boutique-produit{ float: left; width: 30%; text-align: center; padding: 5%; border-bottom: 1px solid #c0c0c0; }
-.boutique-produit:hover{ background: #c0c0c0; }
+.boutique-gauche hr { color: white; width: 75%;margin-left: auto;margin-right: auto;}
+.boutique-droite{float: left; width: 60%; background-color: #f2f2f2;box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);}
+.boutique-produit{ float: left; width: 40%; margin: 0;text-align: center; padding: 5%; border-bottom: 1px solid #c0c0c0; }
+.boutique-produit:hover{ border-radius: 5px;background-color: rgba(200, 200, 200, 0.5 );}
+.boutique-produit h3 { margin: 10%;}
+.boutique-produit p { margin: 10%;}
+.boutique-produit a { font-weight: bold;}
 /**************************************************** DIVERS ************************************************/
 table{ border-collapse: collapse; }
 table tr td{
@@ -80,13 +84,13 @@ text-align: center;
 }
 td, th{ padding: 5px; }
 /**************************************************** INSCRIPTION ************************************************/
-.formulaire_obj {
+.formulaire_obj, .boutique {
   width: 90%;
   position: absolute;
   left:2%;
   margin-left: 1%;
   margin-right: 1%;
-  height: 80%;
+  height: auto;
   /**border: 1px solid black;*/
   padding: 2%;
   margin-top: -0.5%;
@@ -94,6 +98,8 @@ td, th{ padding: 5px; }
   border-radius: 1.5%;
   background-color: rgba(200, 200, 200, 0.5 );
 }
+
+
 
 .formulaire_form {
   width: 25%;
@@ -108,6 +114,7 @@ td, th{ padding: 5px; }
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
   border-radius: 2%;
   background-color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 4%;
 }
 
 .formulaire_form h3 {

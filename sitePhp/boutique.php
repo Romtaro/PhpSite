@@ -7,14 +7,14 @@ Autoloader::register();
 $categories_des_produits = Database::query("SELECT DISTINCT categorie FROM produit");
 
 //debug($categories_des_produits);
-$contenu .= '<div class="boutique-gauche">';
+$contenu .= '<div class="boutique"><div class="boutique-gauche">';
 $contenu .= "<ul>";
 
 foreach( $categories_des_produits as $key => $cat){
 
 	// 	debug($key);
 
-	$contenu .= "<li><a href='?categorie="	. $cat['categorie'] . "'>" . $cat['categorie'] . "</a></li>";
+	$contenu .= "<li><a href='?categorie="	. $cat['categorie'] . "'>" . $cat['categorie'] . "</a></li><hr>";
 }
 $contenu .= "</ul>";
 $contenu .= "</div>";
